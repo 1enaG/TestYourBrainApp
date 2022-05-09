@@ -1,0 +1,47 @@
+<div class="menu-section outline-lime-400">
+    <h3 class="section-title text-lime-300">Create</h3>
+    <ul class="list-items decoration-lime-500  ">
+        <li class="hover-lime">
+            <a routerLink="/dashboard-component" routerLinkActive="active">
+                Dashboard
+            </a>
+        </li>
+    </ul>
+    <h4 class="text-lg text-slate-400">Reports</h4>
+        <ul class="list-items decoration-lime-500">
+            <li class="hover-lime">Performance</li>
+            <li class="hover-lime">Report Generator</li>
+        </ul>
+    <h4 class="text-lg text-slate-400">Setup</h4>
+        <ul class="list-items decoration-lime-500">
+            <li class="hover-lime">Planning</li>
+            <li class="hover-lime">Testing</li>
+        </ul>
+</div>
+
+<div class="menu-section outline-amber-400">
+    <h3 class="section-title text-amber-300">Take a test</h3>
+    <ul class="list-items decoration-amber-500">
+        <li class="hover-amber">Personal Tests</li>
+        <li class="hover-amber">Global Ranking</li>
+        <li class="hover-amber">Results</li>
+    </ul>
+</div>
+
+
+<div class="menu-section outline-red-400">
+    <h3 [class.bg-emerald-700]="isEmerald" class="section-title text-red-400">For Developers</h3>
+    <ul class="list-items decoration-red-500">
+        <li class="hover-red">API</li>
+    </ul>
+</div>
+
+<a routerLink="/registration-component" routerLinkActive="active" class="underline ml-3">Register</a>
+<br>
+<a routerLink="/login-component" routerLinkActive="active" class="underline ml-3">Login</a>
+<br>
+<a routerLink="/account-component" routerLinkActive="active" class="underline ml-3">Account</a>
+<br>
+<a routerLink="/create-component" routerLinkActive="active" class="underline ml-3">Create</a>
+
+

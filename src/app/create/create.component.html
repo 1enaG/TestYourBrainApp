@@ -1,0 +1,60 @@
+<h2 class="font-bold text-2xl ml-6">Create Test</h2>
+<div class="py-2"> <!-- horizontal line-->
+    <div class="w-full border-t border-slate-500"></div>
+</div>
+
+<form action="" class="accent-amber-300" >
+    <div class="underlined-flex">
+        <input class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
+    </div>
+
+    <div class="underlined-flex">
+        <input class="underlined-input text-lg" type="text" placeholder="Subject">
+    </div>
+
+        
+
+
+    <img class="object-cover h-48 w-48 rounded-lg mr-2"
+                        src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
+                        alt="Test cover image">
+
+    <label class="col-start-2 row-start-2 text-lg">Change Image</label>
+    <br>
+    <input type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-4 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+    <div class="py-2"> <!-- horizontal line-->
+        <div class="w-full border-t border-slate-500"></div>
+    </div>
+
+
+    <div class="underlined-flex">
+        <input class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+    </div>
+    <!--TODO: Add image-->
+        <!-- Dropdown of question types -->
+        <!-- Option1 -->
+        <!-- Add option -->
+    <dropdown></dropdown>
+    <input  type="radio" class="h-4 w-4 mr-2">
+    <label for="option">Option 1</label>
+    <br>
+    <a class="link-yellow ml-6">Add option</a>
+    <br>
+
+    <!--COPY (duplicate)-->
+    <!--DELETE-->
+    <div id="leftDiv" class="flex flex-row">
+        <fa-icon [icon]="faCopy" class="fa-lg m-1"></fa-icon>
+        <fa-icon [icon]="faDelete" class="fa-lg m-1"></fa-icon>
+    </div>
+
+    <input  type="radio" class="h-4 w-4 mr-2">
+    <label for="required">Required</label>
+
+    <div class="py-2"> <!-- horizontal line-->
+        <div class="w-full border-t border-slate-500"></div>
+    </div>
+
+    <a class="link-yellow ml-6 text-lg">Add Question +</a>
+
+</form>

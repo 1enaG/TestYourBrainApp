@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-project';
+  OnButtonClick(){
+    console.log("Button was clicked!"); // in F12 
+  }
 }

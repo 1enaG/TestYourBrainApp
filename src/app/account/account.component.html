@@ -1,0 +1,105 @@
+<h2 class="font-bold text-2xl ml-6">Account</h2>
+<div class="py-2"> <!-- horizontal line-->
+    <div class="w-full border-t border-slate-500"></div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2  bg-slate-700 gap-2 sm:p-3 grid-flow-row">
+    <div class="bg-slate-700 col-start-1 col-end-2 lg:p-3 md:p-2 rounded-lg  flex justify-center"> <!-- 01 Avatar-->
+        <img class="object-cover h-40 w-40 md:w-32 md:h-32 lg:w-48 lg:h-48  border-4 border-lime-300 rounded-full m-3"
+        src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
+        alt="Avatar" />
+    </div>
+
+    <div class="bg-slate-700 order-first md:order-2 rounded-lg  md:row-start-1 md:col-start-2 md:col-end-4 "><!-- 02 Name-->
+        <p class="text-lg sm:text-2xl font-semibold">ExtremelyLongUsername</p>
+        <button class="button-yellow">Country \/</button>
+    </div>
+
+       
+         
+    <div class="bg-slate-700 rounded-lg col-start-1 md:col-end-4 lg:col-end-2 "> <!--04 - Change avatar (upload picture) -->
+        <label class="col-start-2 row-start-2 text-lg">Change Avatar</label>
+        <br>
+        <input type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-8 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+        
+        <br>
+        <a class="link-yellow text-lg">Change password</a>
+    </div>
+    <div class="bg-slate-700 rounded-lg   col-start-1 md:col-start-1 lg:col-start-2 md:col-end-4"><!--05 - First Name and Last Name --> 
+        <label for="firstName" class="text-lg">First Name</label> 
+        <br>
+        <input id="firstName" type="text" class="text-input-field" placeholder="First Name">
+        <br>
+
+        <label for="lastName" class="text-lg">Last Name</label> 
+        <br>
+        <input id="lastName" type="text" class="text-input-field" placeholder="Last Name">
+        <br>
+    </div>
+  
+
+    <!--I feel like it would make more sense to be able to change the password in a separate view-->
+    <!-- <label for="oldPassword">Old password</label>
+    <input type="password" class="col-start-1">
+    <input type="password" class="col-start-1"> -->
+
+</div>
+
+<!--
+    GRID EXTRAS 
+<div class="grid grid-cols-4 grid-rows-3 bg-violet-600 gap-2 p-3 grid-flow-row">
+    <div class="bg-violet-400 p-3 rounded-lg col-start-1 col-end-2">01 - Avatar</div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-2 col-end-3">02 - Name </div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-3 col-end-5">03 - Country</div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-1 col-end-3">04 - Change avatar (upload picture)</div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-3 col-end-4">05 - First Name</div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-4 col-end-5">06 - Last Name</div>
+    <div class="bg-violet-400 p-3 rounded-lg col-start-1 col-end-3">07 - Change Password (link)</div>
+
+
+
+
+</div>
+
+
+ GRID WITH 4 COLUMNS
+
+ <div class="grid grid-cols-4 grid-rows-2 bg-slate-700 gap-2 p-3 grid-flow-row">
+    <div class="bg-slate-700 p-3 rounded-lg col-start-1 col-end-2 flex justify-center">
+        <img class="object-cover w-48 h-48 border-4 border-lime-300 rounded-full m-3 col-start-1 row-start-1"
+        src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
+        alt="Avatar" />
+    </div>
+    <div class="bg-slate-700  p-3 rounded-lg col-start-2 col-end-5">
+        <p class="text-2xl font-semibold">ExtremelyLongUsername</p>
+        <button class="button-yellow">Country \/</button>
+    </div>
+
+       
+         
+    <div class="bg-slate-700 p-3 rounded-lg col-start-1 col-end-3"> 
+        <label class="col-start-2 row-start-2 text-lg">Change Avatar</label>
+        <br>
+        <input type="file" class="col-start-2 row-start-2 mb-8 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+        
+        <br>
+        <a class="link-yellow text-lg">Change password</a>
+    </div>
+    <div class="bg-slate-700 p-3 rounded-lg col-start-3 col-end-5">
+        <label for="firstName" class="text-lg">First Name</label> 
+        <br>
+        <input id="firstName" type="text" class="text-input-field" placeholder="First Name">
+        <br>
+
+        <label for="lastName" class="text-lg">Last Name</label> 
+        <br>
+        <input id="lastName" type="text" class="text-input-field" placeholder="Last Name">
+        <br>
+    </div>
+  
+
+
+</div>
+
+
+-->

@@ -1,0 +1,116 @@
+<h2 class="font-bold text-2xl ml-6">Dashboard</h2>
+<div class="py-2"> <!-- horizontal line-->
+    <div class="w-full border-t border-slate-500"></div>
+</div>
+
+<div class="flex flex-col  bg-slate-700">
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1">
+        <div class="basis-7/12 table-heading-elem">Test Name</div>
+        <div class="basis-2/12 table-heading-elem flex justify-center items-center"> <p>Count</p></div>
+        <div class="basis-3/12 table-heading-elem flex justify-center items-center"><p>Avg Score</p></div>
+    </div>
+
+    <!--Test 1-->
+    <div class="flex flex-row  basis-1">
+        <!--NAME-->
+        <div class="basis-7/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <div id="rightDiv" class="flex flex-row">
+                <img class="object-cover h-16 w-16  rounded-lg mr-2"
+                    src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
+                    alt="Avatar" />
+                <div class="flex flex-col">
+                    <p>Test1</p>
+                    <p>Subject</p>
+                </div>
+                
+            </div>
+            <div id="leftDiv" class="flex flex-col">
+                <fa-icon [icon]="faEdit" class="fa-lg m-1"></fa-icon>
+                <fa-icon [icon]="faDelete" class="fa-lg m-1"></fa-icon>
+            </div>
+        </div>
+      
+        <!--COUNT-->
+        <div class="basis-2/12 table-row-elem  flex flex-col justify-center items-center">
+            <fa-icon [icon]="faUsers" class="fa-xl"></fa-icon>
+            <p>35</p>
+        </div>
+
+        <!--AVG SCORE-->
+        <div class="basis-3/12 table-row-elem  flex items-center justify-center">
+            <div  class="bg-lime-600 score-outer-circle" >
+                <div class=" score-inner-circle">
+                    95
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Test 2-->
+    <div class="flex flex-row  basis-1">
+        <div class="basis-7/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <div id="rightDiv" class="flex flex-row">
+                <img class="object-cover h-16 w-16  rounded-lg mr-2"
+                    src="https://www.bezzia.com/wp-content/uploads/2021/07/vintage-vs-retro.jpg"
+                    alt="Avatar" />
+                <div class="flex flex-col">
+                    <p>Test2</p>
+                    <p>Subject</p>
+                </div>
+                
+            </div>
+            <div id="leftDiv" class="flex flex-col">
+                <fa-icon [icon]="faEdit" class="fa-lg m-1"></fa-icon>
+                <fa-icon [icon]="faDelete" class="fa-lg m-1"></fa-icon>
+            </div>
+        </div>
+        
+        <div class="basis-2/12 table-row-elem  flex flex-col justify-center items-center">
+            <fa-icon [icon]="faUsers" class="fa-xl"></fa-icon>
+            <p>24</p>
+        </div>
+        <div class="basis-3/12 table-row-elem flex items-center justify-center ">
+            <div class="bg-amber-400 score-outer-circle ">
+                <div class=" score-inner-circle">
+                    65
+                </div>
+            </div>
+        </div>
+    </div>
+
+       <!--Test 2-->
+       <div class="flex flex-row  basis-1">
+        <div class="basis-7/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <div id="rightDiv" class="flex flex-row">
+                <img class="object-cover h-16 w-16  rounded-lg mr-2"
+                    src="https://img.freepik.com/foto-gratis/vintage-color-paredes-madera-suelo-fondo_1249-936.jpg"
+                    alt="Avatar" />
+                <div class="flex flex-col">
+                    <p>Test3</p>
+                    <p>Subject</p>
+                </div>
+                
+            </div>
+            <div id="leftDiv" class="flex flex-col">
+                <fa-icon [icon]="faEdit" class="fa-lg m-1"></fa-icon>
+                <fa-icon [icon]="faDelete" class="fa-lg m-1"></fa-icon>
+            </div>
+        </div>
+        
+        <div class="basis-2/12 table-row-elem  flex flex-col justify-center items-center">
+            <fa-icon [icon]="faUsers" class="fa-xl"></fa-icon>
+            <p>102</p>
+        </div>
+
+        <div class="basis-3/12 table-row-elem flex items-center justify-center ">
+            <div class="bg-lime-500 score-outer-circle ">
+                <div class=" score-inner-circle">
+                    72
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+   
+</div>

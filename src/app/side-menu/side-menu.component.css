@@ -1,0 +1,18 @@
+.list-items{
+    @apply underline decoration-2 text-lg pl-3 font-semibold
+}
+.menu-section{
+    @apply outline outline-1 rounded-lg p-2 mt-3 mx-3
+}
+.section-title{
+    @apply text-2xl font-bold
+}
+.hover-lime{
+    @apply hover:text-lime-500
+}
+.hover-amber{
+    @apply hover:text-amber-400
+}
+.hover-red{
+    @apply hover:text-red-500
+}
