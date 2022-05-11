@@ -11,7 +11,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './create/create.component';
-import { DropdownComponent } from './dropdown/dropdown.component'; // for 2-way binding 
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { PlanningComponent } from './planning/planning.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for 2-way binding 
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+//import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { PerformanceComponent } from './performance/performance.component';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +36,24 @@ import { DropdownComponent } from './dropdown/dropdown.component'; // for 2-way 
     AccountComponent,
     DashboardComponent,
     CreateComponent,
-    DropdownComponent
+    DropdownComponent,
+    PlanningComponent,
+    PerformanceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     FontAwesomeModule, 
-    FormsModule
+    FormsModule, BrowserAnimationsModule, 
+    MatSlideToggleModule,
+    MatDatepickerModule, 
+    MatSelectModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatNativeDateModule, 
+    MatTooltipModule, 
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

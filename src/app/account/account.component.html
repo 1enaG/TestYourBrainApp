@@ -12,7 +12,22 @@
 
     <div class="bg-slate-700 order-first md:order-2 rounded-lg  md:row-start-1 md:col-start-2 md:col-end-4 "><!-- 02 Name-->
         <p class="text-lg sm:text-2xl font-semibold">ExtremelyLongUsername</p>
-        <button class="button-yellow">Country \/</button>
+        <!-- <button class="button-yellow">Country \/</button> -->
+        
+        <mat-form-field class="font-sans"> <!-- appearance="fill" -->
+            <mat-label class="text-slate-200" >Country</mat-label>
+
+            <mat-select class="text-slate-200">
+                <mat-option>
+                    --
+                </mat-option>
+                <mat-option *ngFor="let country of countries" 
+                    [value] = "country" >
+                    {{ country }}
+                </mat-option>
+            </mat-select>
+    
+        </mat-form-field>
     </div>
 
        

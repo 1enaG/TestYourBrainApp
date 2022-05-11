@@ -13,3 +13,8 @@
 .link-yellow{
     @apply underline decoration-amber-300 decoration-2 hover:text-amber-200
 }
+.sans{
+    @apply font-sans
+}
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

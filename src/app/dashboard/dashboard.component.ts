@@ -12,9 +12,9 @@ export class DashboardComponent implements OnInit {
   faEdit = faPenToSquare; 
   faDelete = faTrash; 
 
-  isFav = false;  
-  lime = "bg-lime-600 score-outer-circle"; 
-  violet = "bg-violet-600 score-outer-circle"; 
+  // isFav = false;  
+  // lime = "bg-lime-600 score-outer-circle"; 
+  // violet = "bg-violet-600 score-outer-circle"; 
 
 
   constructor() { }
