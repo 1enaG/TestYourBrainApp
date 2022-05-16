@@ -4,3 +4,34 @@
 <div class="py-2"> <!-- horizontal line-->
     <div class="w-full border-t border-slate-500"></div>
 </div>
+
+<!--List of tests-->
+<div class="flex flex-wrap">
+    <!--Use ngFor to display all tests and bind the circle style to their respective colors!-->
+    <div *ngFor="let t of tests"
+        class="flex flex-row text-sm bg-slate-600 rounded-lg p-1 m-1 hover:bg-slate-600"
+        [class.bg-slate-600]="t.isSelected"
+        (click)="t.isSelected = !t.isSelected; onTestClick(t)"
+        > <!-- Toggle isSelected field and redraw the chart--> <!--test id is the reference to the div-->
+        <img class="object-cover h-10 w-10  rounded-lg mr-2"
+            src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
+            alt="Avatar" />
+        <div class="flex flex-col">
+            <p class="font-semibold">{{ t.name }}</p>
+            <p>{{ t.subject }}</p>
+        </div>
+        <!-- We have to bind the color of the graph line to the color of the circle! (from ts file)-->
+        <div class="ml-2 flex items-center"> <!--if isSelected == false, don't display the circle at all! -->
+            <fa-icon [icon]="faCircle" class="fa-lg m-1 text-sm" [style.color]="t.isSelected ? t.color : 'rgba(0, 0, 0, 0)'"></fa-icon>
+        </div>
+        
+        
+    </div>
+
+</div>
+
+<!-- Chart for visualizing data-->
+<div id="chartDiv">
+    <canvas id="chartCanvas">
+    </canvas>
+</div>
