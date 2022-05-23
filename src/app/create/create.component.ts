@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  faTrash, faCopy, faImage } from '@fortawesome/free-solid-svg-icons';
+import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create',
@@ -11,6 +11,7 @@ export class CreateComponent implements OnInit {
   faDelete = faTrash;
   faCopy = faCopy; 
   faUploadImage = faImage; 
+  faXmark = faXmark; 
 
   questionTypes = [
       {id: 1, name: 'Multiple Choice: Single Answer'}, 

@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateComponent } from './create/create.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { PlanningComponent } from './planning/planning.component';
@@ -18,11 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker'; //datepicker!
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 //import { MatNativeDateModule } from '@angular/material';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core'; //date!
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PerformanceComponent } from './performance/performance.component';
 
@@ -46,12 +46,13 @@ import { PerformanceComponent } from './performance/performance.component';
     FontAwesomeModule, 
     FormsModule, BrowserAnimationsModule, 
     MatSlideToggleModule,
-    MatDatepickerModule, 
+    MatDatepickerModule, // the datepicker!
     MatSelectModule,
     MatFormFieldModule, 
     MatInputModule, 
-    MatNativeDateModule, 
+    MatNativeDateModule, //date!
     MatTooltipModule, 
+    ReactiveFormsModule, 
     
 
   ],

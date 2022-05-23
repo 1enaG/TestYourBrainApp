@@ -45,10 +45,18 @@
 </div>
 
 <a routerLink="/registration-component" routerLinkActive="active" class="underline ml-3">Register</a>
-<br>
 <a routerLink="/login-component" routerLinkActive="active" class="underline ml-3">Login</a>
-<br>
-<a routerLink="/account-component" routerLinkActive="active" class="underline ml-3">Account</a>
+
+
+<div class="py-2"> <!-- horizontal line-->
+    <div class="w-full border-t border-slate-900"></div>
+</div>
+<div class="pb-2 pl-2 flex items-center hover:text-white h-10 fixed bottom-0 left-0">
+    
+    <fa-icon [icon]="faUser" class="fa-2x"></fa-icon>
+    <a routerLink="/account-component" routerLinkActive="active" class="text-xl ml-3">Account</a>
+</div>
+
 <br>
 
 

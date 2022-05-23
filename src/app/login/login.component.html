@@ -4,16 +4,16 @@
 </div>
 
 <div class="justify-center">
-    <form action="" class="accent-amber-300" >
-
+    <form action="" [formGroup]="loginForm" class="accent-amber-300" (ngSubmit)="login()">
+        <div *ngIf="loginForm.errors" class="text-red-300">The email or password is invalid</div>
         <label for="email">Email address</label> 
         <br>
-        <input id="email" type="text" class="text-input-field" placeholder="Email address">
+        <input formControlName="email" id="email" type="text" class="text-input-field" placeholder="Email address">
         <br>
         
         <label for="password">Password</label>
         <br>
-        <input id="password" type="text" class="text-input-field" placeholder="Password">
+        <input formControlName="password" id="password" type="password" class="text-input-field" placeholder="Password">
         <br>
         <a href="" class="link-yellow">Forgot your password?</a>
         <br>
@@ -27,7 +27,7 @@
 
         <button class="button-yellow">Login</button>
 
-        <p>Don't have an account? <a href="" class="link-yellow">Sign up!</a></p>
+        <p>Don't have an account? <a routerLink="/registration-component" routerLinkActive="active" class="link-yellow">Sign up!</a></p>
         
     
     </form>

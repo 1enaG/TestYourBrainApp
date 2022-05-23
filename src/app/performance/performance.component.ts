@@ -31,11 +31,6 @@ export class PerformanceComponent implements OnInit {
     this.assignColors(); 
 
     this.drawChart(); //takes the dates and tests in current component and draws a chart 
-
-
-
-
-
   } // end of OnInit()
 
   drawChart(){
@@ -48,10 +43,8 @@ export class PerformanceComponent implements OnInit {
     const labels = this.getDateStrings();  
 
     this.tests.forEach( (t) =>{
-      //if(t.isSelected){
         let dataItem :DataItem = this.testToDataItem(t); 
         testsDataSet.push(dataItem); 
-      //} // end of if 
     }); 
 
     const performanceData = {
@@ -100,7 +93,6 @@ export class PerformanceComponent implements OnInit {
       type: 'line',
       data: performanceData,
       options: chartOptions, 
-      
     });
     
   }
@@ -132,7 +124,7 @@ export class PerformanceComponent implements OnInit {
       {
         id: 1, 
         name: "Test 1", 
-        subject: "Subject 1", 
+        subject: "Subject 2", 
         imgURL: "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
         avgScores: [65, 80, 48, 100, 70],
         color: "",
@@ -142,7 +134,7 @@ export class PerformanceComponent implements OnInit {
         id: 2, 
         name: "Test 2", 
         subject: "Subject 2", 
-        imgURL: "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
+        imgURL: "https://www.bezzia.com/wp-content/uploads/2021/07/vintage-vs-retro.jpg",
         avgScores: [89, 72, 58, 60, 84],
         color: "",
         isSelected: true, 
@@ -151,7 +143,7 @@ export class PerformanceComponent implements OnInit {
         id: 3, 
         name: "Test 3", 
         subject: "Subject 3", 
-        imgURL: "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
+        imgURL: "https://img.freepik.com/foto-gratis/vintage-color-paredes-madera-suelo-fondo_1249-936.jpg",
         avgScores: [59, 80, 81, 56, 55],
         color: "",
         isSelected: true, 
@@ -160,7 +152,7 @@ export class PerformanceComponent implements OnInit {
         id: 4, 
         name: "Test 4", 
         subject: "Subject 4", 
-        imgURL: "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
+        imgURL: "https://www.bezzia.com/wp-content/uploads/2021/07/vintage-vs-retro.jpg",
         avgScores: [0, 40, 70, 21, 35],
         color: "",
         isSelected: true, 
@@ -169,7 +161,7 @@ export class PerformanceComponent implements OnInit {
         id: 5, 
         name: "Test 5", 
         subject: "Subject 5", 
-        imgURL: "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
+        imgURL: "https://img.freepik.com/foto-gratis/vintage-color-paredes-madera-suelo-fondo_1249-936.jpg",
         avgScores: [55, 87, 81, 43, 78],
         color: "",
         isSelected: true, 
@@ -224,7 +216,7 @@ export class PerformanceComponent implements OnInit {
 
 }
 
-interface Test{
+interface Test{ //TODO: rename to DecoratedTest
   id: number; 
   name: string; 
   subject: string; 

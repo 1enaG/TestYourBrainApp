@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'side-menu',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
+  faUser = faCircleUser; 
   constructor() { }
 
   ngOnInit(): void {

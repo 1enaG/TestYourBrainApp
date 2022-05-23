@@ -58,8 +58,12 @@
     </div>
 
     <br>
-    <input  type="radio" class="h-4 w-4 mr-2">
-    <label for="option">Option 1</label>
+    <div id="option">
+        <input  type="radio" class="h-4 w-4 mr-2">
+        <input type="text" class="bg-slate-700 border-b w-1/2 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+        <fa-icon [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
+    </div>
+    
     <br>
     <a class="link-yellow ml-6">Add option</a>
     <br>
@@ -68,8 +72,8 @@
     <!--DELETE-->
     <div class="flex justify-between mt-6">
         <div id="leftDiv" class="flex flex-row">
-            <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate"></fa-icon>
-            <fa-icon [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete"></fa-icon>
+            <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
+            <fa-icon [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
         </div>
      
        <!-- <input  type="radio" class="h-4 w-4 mr-2"> -->

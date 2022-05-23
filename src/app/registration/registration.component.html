@@ -3,26 +3,61 @@
     <div class="w-full border-t border-slate-500"></div>
 </div>
 <div class="justify-center">
-    <form action="" >
+    <form action="" [formGroup]="regForm">
 
         <label for="email">Email address</label> 
         <br>
-        <input id="email" type="text" class="text-input-field" placeholder="Email address">
+        <input formControlName="email" id="email" type="text" class="text-input-field" placeholder="Email address">
         <br>
+        <div *ngIf="email?.invalid && email?.touched" class="text-red-400">Email is required.</div>
         
         <label for="password">Password</label>
         <br>
-        <input id="password" type="text" class="text-input-field" placeholder="Password">
+        <input formControlName="password"  id="password" type="password" class="text-input-field" placeholder="Password">
         <br>
-        <input id="repeatPassword" type="text" class="text-input-field mt-2" placeholder="Repeat password">
+        <div *ngIf="password?.invalid && password?.touched" class="text-red-400">
+            
+            <div *ngIf="password?.errors?.['required']">
+                Password is required.
+            </div>
+            <div *ngIf="password?.errors?.['minlength']">
+                Password must be at least {{ password?.errors?.['minlength'].requiredLength }} characters long.
+            </div>
+        </div>
+        
+        <input formControlName="repeatPassword" id="repeatPassword" type="password" class="text-input-field mt-2" placeholder="Repeat password">
         <br>
+        <div *ngIf="repeatPassword?.invalid && repeatPassword?.touched" class="text-red-400">
+            <div *ngIf="repeatPassword?.errors?.['required']">
+                Please confirm your password.
+            </div>
+            <div *ngIf="repeatPassword?.errors?.['minlength']">
+                Password must be at least {{ repeatPassword?.errors?.['minlength'].requiredLength }} characters long.
+            </div>
+        </div>
     
         <label for="username">Username</label>
         <br>
-        <input id="username" type="text" class="text-input-field" placeholder="Username">
+        <input formControlName="username" id="username" type="text" class="text-input-field" placeholder="Username">
         <br>
+        <div *ngIf="username?.pending">Checking for uniqueness...</div>
+        <div *ngIf="username?.invalid && username?.touched" class="text-red-400">
+
+            <div *ngIf="username?.errors?.['required']">
+                Username is required.
+            </div>
+            <div *ngIf="username?.errors?.['cannotContainSpace']">
+                Username cannot contain spaces 
+            </div>
+            <div *ngIf="username?.errors?.['shouldBeUnique']">
+                This username is already taken
+            </div>
+        </div>
     
         <button class="button-yellow">Register</button>
+        <p>Already have an account? <a routerLink="/login-component" routerLinkActive="active" class="link-yellow">Log in!</a></p>
+        
+    
         
     
     </form>

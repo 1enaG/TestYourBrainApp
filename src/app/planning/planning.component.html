@@ -6,11 +6,71 @@
 </div>
 
 
-<!-- <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-</mat-form-field> -->
   
+  <div class="flex flex-col  bg-slate-700">
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1">
+        <div class="basis-4/12 table-heading-elem">Test Name</div>
+        <div class="basis-2/12 table-heading-elem flex justify-center items-center"> <p>Status</p></div>
+        <div class="basis-6/12 table-heading-elem flex justify-center items-center"><p>Available</p></div>
+    </div>
+
+    <!--Test Card-->
+    <div *ngFor="let t of tests" class="flex flex-row  basis-1">
+        <div class="basis-4/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <div id="rightDiv" class="flex flex-row">
+                <img class="object-cover h-16 w-16  rounded-lg mr-2"
+                    src={{t.imgURL}}
+                    alt="Test Cover Image" />
+                <div class="flex flex-col">
+                    <p>{{ t.name }}</p>
+                    <p>{{ t.subject }}</p>
+                </div>
+                
+            </div>
+
+        </div>
+        
+        <div class="basis-2/12 table-row-elem flex flex-col  items-center">
+        
+
+            <mat-form-field class="font-sans"> <!-- appearance="fill" -->
+                <mat-label class="text-slate-200 font-sans" >Status</mat-label>
+                <mat-select [(ngModel)]="t.status" class="text-slate-200">
+                    <mat-option *ngFor="let status of statusOptions" class="font-sans"
+                        [value] = "status" >
+                        {{ status }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div class="basis-6/12 table-row-elem flex  flex-col items-center justify-center ">
+            <div>
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label class="text-slate-200 font-sans">Start date</mat-label>
+                    <input matInput [matDatepicker]="picker1">
+                    <!-- <mat-hint class="text-slate-300">MM/DD/YYYY</mat-hint> -->
+                    <mat-datepicker-toggle class="text-slate-200 hover:text-white" matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+    
+            </div>
+       
+            <div>
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label class="text-slate-200 font-sans">End date</mat-label>
+                    <input matInput [matDatepicker]="picker2">
+                    <!-- <mat-hint class="text-slate-300">MM/DD/YYYY</mat-hint> -->
+                    <mat-datepicker-toggle class="text-slate-200 hover:text-white" matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker class="bg-slate-400" #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+   
+</div>
