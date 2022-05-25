@@ -3,15 +3,15 @@
     <div class="w-full border-t border-slate-500"></div>
 </div>
 
-<form action="" class="accent-amber-300" >
+<form [formGroup]="testForm" action="" class="accent-amber-300" >
     <div class="md:flex">
         <div class="md:order-2 md:flex-none lg:w-1/2">
             <div class="underlined-flex">
-                <input class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
+                <input formControlName="testName" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
             </div>
         
             <div class="underlined-flex">
-                <input class="underlined-input text-lg" type="text" placeholder="Subject">
+                <input formControlName="testSubject" class="underlined-input text-lg" type="text" placeholder="Subject">
             </div>
         </div>
         
@@ -33,11 +33,11 @@
     </div>
 
     
-    <form action="" [formGroup]="questionForm">
+    <form formArrayName="questions" action="" *ngFor="let question of questions.controls; let i = index"> <!--[formGroup]="questionForm"-->
         <div class="md:flex md:justify-between gap-5">
             <div class="underlined-flex flex-1">
-                <input formControlName="questionName" class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
-                
+                <input  class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+                <!--formControlName="questionName"-->
             </div>
             <div class="flex items-center">
                 <fa-icon [icon]="faUploadImage" class="fa-xl m-1 hover:text-white" matTooltip="Upload image"></fa-icon>
@@ -61,13 +61,16 @@
         </div>
     
         <br>
-        <!-- <div id="option">
+        <!-- FIRST OPTION --> 
+            <div id="option">
             <input  type="radio" class="h-4 w-4 mr-2">
             <input type="text" class="bg-slate-700 border-b w-1/2 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
             <fa-icon [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>  
                
-        </div> -->
-        <div formArrayName="options" *ngFor="let option of options.controls; let i = index">
+        </div> 
+       
+<!--   OLD OPTIONS LOGIC   
+        <div formArrayName="options" *ngFor="let option of options.controls; let i = index"> 
             <input  type="radio" class="h-4 w-4 mr-2">
             <input type="text" [formControlName]="i" class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
             <fa-icon (click)="removeOption(i)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
@@ -76,28 +79,30 @@
         <br>
         <a (click)="addOption()"  class="link-yellow ml-6">Add option</a>
         <br>
-    
+     -->
+        <br>
+        <a class="link-yellow ml-6">Add option</a>
+        <br>
         <!--COPY (duplicate)-->
         <!--DELETE-->
         <div class="flex justify-between mt-6">
             <div id="leftDiv" class="flex flex-row">
                 <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
-                <fa-icon [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
+                <fa-icon (click)="removeQuestion(i)" [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
             </div>
          
            <!-- <input  type="radio" class="h-4 w-4 mr-2"> -->
             <mat-slide-toggle class="font-sans">Required</mat-slide-toggle>
         </div>
-       
-        <!-- <label for="required">Required</label> -->
-    
+
         <div class="py-2"> <!-- horizontal line-->
             <div class="w-full border-t border-slate-500"></div>
         </div>
-    
-        <a  class="link-yellow ml-6 text-lg">Add Question +</a>
+    </form> <!--end of question--> 
+        <!-- <label for="required">Required</label> -->
+        <a (click)="addQuestion()" class="link-yellow ml-6 text-lg">Add Question +</a>
 
-    </form>
+    
     <div class="flex w-full place-content-end">
         <button class="button-yellow">Save test</button>
     </div>
