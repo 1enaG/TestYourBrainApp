@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CreateComponent } from './create/create.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component'; 
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'create-component', component: CreateComponent }, 
   { path: 'planning-component', component: PlanningComponent }, 
   { path: 'performance-component', component: PerformanceComponent }, 
+  { path: 'change-password-component', component: ChangePasswordComponent }, 
+  
 ];
 
 @NgModule({

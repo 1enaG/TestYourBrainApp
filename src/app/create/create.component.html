@@ -33,59 +33,75 @@
     </div>
 
     
-
-    <div class="md:flex md:justify-between gap-5">
-        <div class="underlined-flex flex-1">
-            <input class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+    <form action="" [formGroup]="questionForm">
+        <div class="md:flex md:justify-between gap-5">
+            <div class="underlined-flex flex-1">
+                <input formControlName="questionName" class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+                
+            </div>
+            <div class="flex items-center">
+                <fa-icon [icon]="faUploadImage" class="fa-xl m-1 hover:text-white" matTooltip="Upload image"></fa-icon>
+            </div>
             
+            <div>
+                <mat-form-field class="font-sans m-0"> <!-- appearance="fill" -->
+                    <mat-label class="text-slate-200" >Question Type</mat-label>
+                    <mat-select > <!--[(ngModel)]="defaultQuestionType"-->
+                        <!-- <mat-option *ngFor="let questionType of questionTypes" value="questionType.id">
+                            {{ questionType.name }}
+                        </mat-option> -->
+                        <mat-option *ngFor="let questionType of eQuestionType | keyvalue"  value="questionType.key" (onSelectionChange)="onQuestionTypeChange()">
+                            {{ questionType.value }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+            </div>
+    
         </div>
-        <div class="flex items-center">
-            <fa-icon [icon]="faUploadImage" class="fa-xl m-1 hover:text-white" matTooltip="Upload image"></fa-icon>
+    
+        <br>
+        <!-- <div id="option">
+            <input  type="radio" class="h-4 w-4 mr-2">
+            <input type="text" class="bg-slate-700 border-b w-1/2 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+            <fa-icon [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>  
+               
+        </div> -->
+        <div formArrayName="options" *ngFor="let option of options.controls; let i = index">
+            <input  type="radio" class="h-4 w-4 mr-2">
+            <input type="text" [formControlName]="i" class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+            <fa-icon (click)="removeOption(i)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
         </div>
         
-        <div>
-            <mat-form-field class="font-sans m-0"> <!-- appearance="fill" -->
-                <mat-label class="text-slate-200" >Question Type</mat-label>
-                <mat-select > <!--[(ngModel)]="defaultQuestionType"-->
-                    <mat-option *ngFor="let questionType of questionTypes" value="questionType.id">
-                        {{ questionType.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        
+        <br>
+        <a (click)="addOption()"  class="link-yellow ml-6">Add option</a>
+        <br>
+    
+        <!--COPY (duplicate)-->
+        <!--DELETE-->
+        <div class="flex justify-between mt-6">
+            <div id="leftDiv" class="flex flex-row">
+                <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
+                <fa-icon [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
+            </div>
+         
+           <!-- <input  type="radio" class="h-4 w-4 mr-2"> -->
+            <mat-slide-toggle class="font-sans">Required</mat-slide-toggle>
         </div>
+       
+        <!-- <label for="required">Required</label> -->
+    
+        <div class="py-2"> <!-- horizontal line-->
+            <div class="w-full border-t border-slate-500"></div>
+        </div>
+    
+        <a  class="link-yellow ml-6 text-lg">Add Question +</a>
 
-    </div>
-
-    <br>
-    <div id="option">
-        <input  type="radio" class="h-4 w-4 mr-2">
-        <input type="text" class="bg-slate-700 border-b w-1/2 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
-        <fa-icon [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
+    </form>
+    <div class="flex w-full place-content-end">
+        <button class="button-yellow">Save test</button>
     </div>
     
-    <br>
-    <a class="link-yellow ml-6">Add option</a>
-    <br>
-
-    <!--COPY (duplicate)-->
-    <!--DELETE-->
-    <div class="flex justify-between mt-6">
-        <div id="leftDiv" class="flex flex-row">
-            <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
-            <fa-icon [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
-        </div>
-     
-       <!-- <input  type="radio" class="h-4 w-4 mr-2"> -->
-        <mat-slide-toggle class="font-sans">Required</mat-slide-toggle>
-    </div>
-   
-    <!-- <label for="required">Required</label> -->
-
-    <div class="py-2"> <!-- horizontal line-->
-        <div class="w-full border-t border-slate-500"></div>
-    </div>
-
-    <a class="link-yellow ml-6 text-lg">Add Question +</a>
+  
 
 </form>
