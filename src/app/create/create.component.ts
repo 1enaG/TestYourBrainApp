@@ -25,35 +25,13 @@ export class CreateComponent implements OnInit {
 
   defaultQuestionType = QuestionType.Radio; 
   testForm: FormGroup; 
-  //questionForm: FormGroup;  
 
-    // getters to easily access form controls 
-  get testName(){
-    return this.testForm.get("testName"); 
-  }
-  get testSubject(){
-    return this.testForm.get("testSubject"); 
-  }
-  get questions(){
-    return this.testForm.get("questions") as FormArray; 
-  }
-  // get questionName(){
-    
-  //   return this.testForm.get("questionName"); 
-  //   //return this.questionForm.get("questionName"); 
-  // }
-  // get options(){
-  //   return this.questionForm.get("options") as FormArray; 
-  // }
+
+
   
 
   constructor(fb: FormBuilder) {
-    // this.questionForm = new FormGroup({
-    //   questionName: new FormControl(''), 
-    //   options: new FormArray([
-    //     //this.addOption() 
-    //   ])
-    // }); 
+  
     this.fb = fb; // so it can be used anywhere in the class, not just in ctor
     this.testForm = fb.group({
       testName: [''], 
@@ -63,7 +41,9 @@ export class CreateComponent implements OnInit {
         fb.group({ //if it's within an array, it doesn't have a name, only an index! 
           questionName: [''], 
           questionType: [this.eQuestionType.Radio], //default value for question type 
-          options: fb.array([]),
+          options: fb.array([
+            new FormControl()
+          ]),
           // other fields? required etc  
         })
       ]), 
@@ -73,6 +53,21 @@ export class CreateComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  // getters to easily access form controls 
+  get testName(){
+    return this.testForm.get("testName"); 
+  }
+  get testSubject(){
+    return this.testForm.get("testSubject"); 
+  }
+  get questions(){
+    return this.testForm.get("questions") as FormArray; 
+  }
+
+  getOptions(idx: number){
+    return this.questions.at(idx).get('options') as FormArray; 
   }
 
   addQuestion(){
@@ -89,18 +84,17 @@ export class CreateComponent implements OnInit {
   removeQuestion(idx: number){
     this.questions.removeAt(idx);
   }
-  // method to dynamically insert options into the FormArray: 
-  // addOption(): FormControl{ // have to add option *to a specific question*
-  //   let fc = new FormControl(); 
-  //   this.options.push(fc); 
-  //   return fc; 
-  // }
 
-  // removeOption(idx: number): void{ //option: FormControl
-  //   //let index = this.options.controls.indexOf(option); 
-  //   //this.options.removeAt(index); 
-  //   this.options.removeAt(idx); 
-  // }
+  
+  addOption(qIdx: number){
+    this.getOptions(qIdx).push(new FormControl()); // I hope GetOptions return by reference, not a copy 
+  }
+
+  removeOption(qIdx: number, optIdx:number){ //qidx, optIdx 
+    this.getOptions(qIdx).removeAt(optIdx); 
+  }
+
+
 
   onQuestionTypeChange(){
 
@@ -135,3 +129,24 @@ export class CreateComponent implements OnInit {
 
 
   //  }); 
+    // method to dynamically insert options into the FormArray: 
+  // addOption(): FormControl{ // have to add option *to a specific question*
+  //   let fc = new FormControl(); 
+  //   this.options.push(fc); 
+  //   return fc; 
+  // }
+
+  // removeOption(idx: number): void{ //option: FormControl
+  //   //let index = this.options.controls.indexOf(option); 
+  //   //this.options.removeAt(index); 
+  //   this.options.removeAt(idx); 
+  // }
+
+    // get questionName(){
+    
+  //   return this.testForm.get("questionName"); 
+  //   //return this.questionForm.get("questionName"); 
+  // }
+  // get options(){
+  //   return this.questionForm.get("options") as FormArray; 
+  // }

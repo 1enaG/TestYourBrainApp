@@ -26,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core'; //date!
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PerformanceComponent } from './performance/performance.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PreviewComponent } from './preview/preview.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     DropdownComponent,
     PlanningComponent,
     PerformanceComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,

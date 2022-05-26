@@ -1,3 +1,4 @@
+import { PreviewComponent } from './preview/preview.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CreateComponent } from './create/create.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'planning-component', component: PlanningComponent }, 
   { path: 'performance-component', component: PerformanceComponent }, 
   { path: 'change-password-component', component: ChangePasswordComponent }, 
+  { path: 'preview-component', component: PreviewComponent }, 
   
 ];
 

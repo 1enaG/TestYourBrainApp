@@ -1,0 +1,32 @@
+<p>preview works!</p>
+<div [formGroup]="testForm" action="">
+    <input formControlName="testName" type="text" placeholder="test name" class="bg-slate-500 rounded m-2 p-1" >
+    <br>
+    <input formControlName="testSubject" type="text" placeholder="test subject" class="bg-slate-500 rounded m-2 p-1">
+    <div formArrayName="questions">
+        <div  *ngFor="let question of questions.controls; let qIdx = index" class="ml-3" action=""> <!--array (questions)-->
+            <div [formGroupName]="qIdx">   
+            <!--control group: q name + options-->
+                <input formControlName="questionName" type="text" placeholder="question name" class="bg-slate-500 rounded m-2 p-1">
+                <br>
+                <input formControlName="questionType" type="text" placeholder="question type" class="bg-slate-500 rounded m-2 p-1"> 
+
+                <div formArrayName="options" class="ml-3"> <!--array many of those-->
+                    <div *ngFor="let option of getOptions(qIdx).controls; let optIdx = index">
+                        <input  type="text" placeholder="-option 1" class="bg-slate-500 rounded m-2 p-1">
+                        <br>
+                        <a href="" (click)="removeOption(qIdx, optIdx)" class="underline decoration-amber-300 ml-3">Remove option</a>
+                    </div>
+                </div>
+
+                <a href="" (click)="addOption(qIdx)" class="underline decoration-amber-300 ml-3">Add option</a>
+                
+                <br>
+                <a href="" (click)="removeQuestion(qIdx)" class="underline decoration-amber-300 text-lg ml-3">Remove question</a>
+            
+            </div>
+        </div>
+    </div>
+    <a href="" (click)="addQuestion()" class="underline decoration-amber-300 text-lg ml-3">Add question</a>
+    
+</div>
