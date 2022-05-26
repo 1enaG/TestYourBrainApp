@@ -1,3 +1,5 @@
+import { GlobalRankingComponent } from './global-ranking/global-ranking.component';
+import { PersonalTestsComponent } from './personal-tests/personal-tests.component';
 import { PreviewComponent } from './preview/preview.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CreateComponent } from './create/create.component';
@@ -21,7 +23,10 @@ const routes: Routes = [
   { path: 'performance-component', component: PerformanceComponent }, 
   { path: 'change-password-component', component: ChangePasswordComponent }, 
   { path: 'preview-component', component: PreviewComponent }, 
+  { path: 'personal-tests-component', component: PersonalTestsComponent }, 
+  { path: 'global-ranking-component', component: GlobalRankingComponent }, 
   
+
 ];
 
 @NgModule({

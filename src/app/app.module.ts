@@ -27,6 +27,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PerformanceComponent } from './performance/performance.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PreviewComponent } from './preview/preview.component';
+import { ScoreComponent } from './score/score.component';
+import { TestDetailsComponent } from './test-details/test-details.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { CountComponent } from './count/count.component';
+import { PersonalTestsComponent } from './personal-tests/personal-tests.component';
+import { GlobalRankingComponent } from './global-ranking/global-ranking.component';
 
 
 @NgModule({
@@ -42,7 +48,13 @@ import { PreviewComponent } from './preview/preview.component';
     PlanningComponent,
     PerformanceComponent,
     ChangePasswordComponent,
-    PreviewComponent
+    PreviewComponent,
+    ScoreComponent,
+    TestDetailsComponent,
+    PageTitleComponent,
+    CountComponent,
+    PersonalTestsComponent,
+    GlobalRankingComponent
   ],
   imports: [
     BrowserModule,

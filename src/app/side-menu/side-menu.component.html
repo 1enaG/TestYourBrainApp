@@ -34,8 +34,16 @@
 <div class="menu-section outline-amber-400">
     <h3 class="section-title text-amber-300">Take a test</h3>
     <ul class="list-items decoration-amber-500">
-        <li class="hover-amber">Personal Tests</li>
-        <li class="hover-amber">Global Ranking</li>
+        <li class="hover-amber">
+            <a routerLink="/personal-tests-component" routerLinkActive="active" class="decoration-amber-500">
+                Personal Tests
+            </a>
+        </li>
+        <li class="hover-amber">
+            <a routerLink="/global-ranking-component" routerLinkActive="active" class="decoration-amber-500">
+                Global Ranking
+            </a>
+        </li>
         <li class="hover-amber">Results</li>
     </ul>
 </div>
@@ -55,8 +63,7 @@
 <div class="py-2"> <!-- horizontal line-->
     <div class="w-full border-t border-slate-900"></div>
 </div>
-<div class="pb-2 pl-2 flex items-center hover:text-white h-10 fixed bottom-0 left-0">
-    
+<div class="pb-2 pl-2 flex items-center hover:text-white h-10 fixed bottom-0 left-0">  
     <fa-icon [icon]="faUser" class="fa-2x"></fa-icon>
     <a routerLink="/account-component" routerLinkActive="active" class="text-xl ml-3">Account</a>
 </div>

@@ -1,7 +1,6 @@
-<h2 class="font-bold text-2xl ml-6">Create Test</h2>
-<div class="py-2"> <!-- horizontal line-->
-    <div class="w-full border-t border-slate-500"></div>
-</div>
+<page-title>
+    <ng-container class="title-text">Create Test</ng-container>
+</page-title>
 
 <form [formGroup]="testForm" action="" class="accent-amber-300" >
     <div class="md:flex">
@@ -57,13 +56,14 @@
                 </div>
         
             </div>
-        
             <br>
             
             <div formArrayName="options">
                 <div *ngFor="let option of getOptions(qIdx).controls; let optIdx = index">
                     <input  type="radio" class="h-4 w-4 mr-2">
-                    <input type="text" formControlName="{{optIdx}}" class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+
+                    <!--formControlName="{{optIdx}}"-->
+                    <input type="text"  class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
                     <fa-icon (click)="removeOption(qIdx, optIdx)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
                 
                 </div>
@@ -88,10 +88,7 @@
             </div>
         </div>
     </form> <!--end of question--> 
-
-        <!-- <label for="required">Required</label> -->
         <a (click)="addQuestion()" class="link-yellow ml-6 text-lg">Add Question +</a>
-
     
     <div class="flex w-full place-content-end">
         <button class="button-yellow">Save test</button>

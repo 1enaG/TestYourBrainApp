@@ -1,12 +1,11 @@
-<div class="flex justify-between">
-    <h2 class="font-bold text-2xl ml-6">Dashboard</h2>
-    <a routerLink="/create-component" routerLinkActive="active" class="border-lime-400 border-2 rounded-lg font-semibold text-lg text-lime-400 px-2 hover:bg-slate-600/70">
-        Create
-    </a>
-</div>
-<div class="py-2"> <!-- horizontal line-->
-    <div class="w-full border-t border-slate-500"></div>
-</div>
+<page-title>
+    <ng-container class="title-text">Dashboard</ng-container>
+    <ng-container class="additional">
+        <a routerLink="/create-component" routerLinkActive="active" class="border-lime-400 border-2 rounded-lg font-semibold text-lg text-lime-400 px-2 hover:bg-slate-600/70">
+            Create
+        </a>
+    </ng-container>
+</page-title>
 
 <div class="flex flex-col  bg-slate-700">
     <!-- Heading -->
@@ -20,38 +19,23 @@
     <div class="flex flex-row  basis-1" *ngFor="let t of tests">
         <!--NAME-->
         <div class="basis-7/12 table-row-elem flex flex-col sm:flex-row justify-between">
-            <div id="rightDiv" class="flex flex-row">
-                <img class="object-cover h-16 w-16  rounded-lg mr-2"
-                    src={{t.imgURL}}
-                    alt="Test Cover Image" />
-                <div class="flex flex-col">
-                    <p>{{ t.name }}</p>
-                    <p>{{ t.subject }}</p>
-                </div>
-                
-            </div>
-            <div id="leftDiv" class="flex flex-col">
+            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            </test-details>
+            <div class="flex flex-col">
                 <fa-icon [icon]="faEdit" class="fa-lg m-1 text-lime-300 hover:text-lime-500"></fa-icon>
                 <fa-icon [icon]="faDelete" class="fa-lg m-1 text-red-400 hover:text-red-500"></fa-icon>
             </div>
         </div>
       
         <!--COUNT-->
-        <div class="basis-2/12 table-row-elem  flex flex-col justify-center items-center">
-            <fa-icon [icon]="faUsers" class="fa-xl"></fa-icon>
-            <p>{{ t.count }}</p>
+        
+        <div class="basis-2/12 table-row-elem">
+            <count [count]="t.count"></count>
         </div>
 
         <!--AVG SCORE-->
         <div class="basis-3/12 table-row-elem  flex items-center justify-center">
-            <div  class="score-outer-circle" [class]="getColorClass(t.avgScore)">
-                <div class=" score-inner-circle">
-                    {{ t.avgScore }}
-                </div>
-            </div>
+            <score [scoreValue] ="t.avgScore"></score>
         </div>
-    </div>
-    
-    
-   
+
 </div>

@@ -1,0 +1,8 @@
+<!--AVG SCORE-->
+<div  class="score-outer-circle" [class]="getColorClass(scoreValue)"> <!-- [class]="getColorClass(t.avgScore)" -->
+    <div class="score-inner-circle">
+        {{ scoreValue }}
+        <!-- <ng-content select=".scoreValue"></ng-content> -->
+        <!-- {{ t.avgScore }} -->
+    </div>
+</div>

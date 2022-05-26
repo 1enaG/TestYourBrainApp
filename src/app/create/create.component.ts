@@ -75,7 +75,9 @@ export class CreateComponent implements OnInit {
       this.fb.group({ 
         questionName: [''], 
         questionType: [this.eQuestionType.Radio],  
-        options: this.fb.array([]),
+        options: this.fb.array([
+          new FormControl()
+        ]),
         // other fields? required etc  
       })
     ); //maybe has to have content inside? 

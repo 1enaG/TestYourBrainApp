@@ -1,0 +1,42 @@
+<page-title>
+    <ng-container class="title-text">Personal Tests</ng-container>
+    <ng-container class="additional">
+        <!-- <fa-icon [icon]="faSearch" class="fa-sm m-1 text-white"></fa-icon> -->
+        <input formControlName="testName" type="text" placeholder="search..." 
+            class="bg-slate-500 rounded-xl px-2 py-1" >
+    </ng-container>
+</page-title>
+
+<div class="flex flex-col  bg-slate-700">
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1 mx-3 font-semibold">
+        <div class="basis-5/12 table-heading-elem">Test Name</div>
+        <div class="basis-4/12 table-heading-elem flex justify-center items-center"> <p>Available</p></div>
+        <div class="basis-3/12 table-heading-elem flex justify-center items-center"><p>Action</p></div>
+    </div>
+
+    <!--Test 1-->
+    <div class="flex flex-row basis-1" *ngFor="let t of tests" > 
+        <!--NAME-->
+        <div class="basis-5/12 m-2">
+            <!-- <p>{{ t.name }}</p> -->
+            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            </test-details>
+        </div>
+      
+        <!--DATE (when available)-->
+        <div class="basis-4/12 m-2 flex justify-center items-center">
+            may 28, 2022
+        </div>
+
+        <!--ACTION-->
+        <div class="basis-3/12 m-2 flex items-center justify-center">
+            <button class="border-lime-400 border-2 rounded-lg font-semibold text-lg text-lime-400 px-5 hover:bg-slate-600/70">
+                Pass
+            </button>
+        </div>
+        
+        
+    </div>
+
+</div>
