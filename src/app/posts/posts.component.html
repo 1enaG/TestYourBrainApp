@@ -1,0 +1,9 @@
+<p>posts works!</p>
+<input id="postTitle" #titleInputField (keyup.enter)="createPost(titleInputField)" type="text" class="text-input-field" placeholder="New Post Title">
+<ul>
+    <li
+    *ngFor = "let post of posts"
+        >
+    {{ post.title }}
+    </li>
+</ul>

@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "tests": [
+    {
+      "id": 1,
+      "externalID": "86907b55-fd12-4763-8518-b4308a02c2e6",
+      "caption": "Test 1",
+      "subject": "Subject 1",
+      "userExternalID": "f07af1d1-7b23-445a-ae46-a418799ef6b1",
+      "open": true,
+      "icon": "base64 image"
+    },
+    {
+      "id": 2,
+      "externalID": "86907b55-fd12-4763-8518-b4308a02c2e8",
+      "caption": "Test 2",
+      "subject": "Subject 2",
+      "userExternalID": "f07af1d1-7b23-445a-ae46-a418799ef6b2",
+      "open": false,
+      "icon": "base64 image"
+    },
+    {
+      "id": 3,
+      "externalID": "86907b55-fd12-4763-8518-b4308a02c2e7",
+      "caption": "Test 3",
+      "subject": "Subject 3",
+      "userExternalID": "f07af1d1-7b23-445a-ae46-a418799ef6ba",
+      "open": true,
+      "icon": "base64 image"
+    },
+    {
+      "externalID": "86907b55-fd12-4763-8518-b4308a02c2e6",
+      "caption": "Test 4",
+      "subject": "Subject 4",
+      "userExternalID": "f07af1d1-7b23-445a-ae46-a418799ef6b1",
+      "open": true,
+      "icon": "base64 image",
+      "id": 4
+    }
+  ]
+}

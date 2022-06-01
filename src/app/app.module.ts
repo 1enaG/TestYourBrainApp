@@ -15,6 +15,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { PlanningComponent } from './planning/planning.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for 2-way binding 
+import { HttpClientModule } from '@angular/common/http'; //consuming http services 
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
@@ -33,6 +34,9 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { CountComponent } from './count/count.component';
 import { PersonalTestsComponent } from './personal-tests/personal-tests.component';
 import { GlobalRankingComponent } from './global-ranking/global-ranking.component';
+import { ResultsComponent } from './results/results.component';
+import { PostsComponent } from './posts/posts.component';
+import { PostsService } from './services/posts.service';
 
 
 @NgModule({
@@ -54,7 +58,9 @@ import { GlobalRankingComponent } from './global-ranking/global-ranking.componen
     PageTitleComponent,
     CountComponent,
     PersonalTestsComponent,
-    GlobalRankingComponent
+    GlobalRankingComponent,
+    ResultsComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,10 +75,11 @@ import { GlobalRankingComponent } from './global-ranking/global-ranking.componen
     MatNativeDateModule, //date!
     MatTooltipModule, 
     ReactiveFormsModule, 
-    
-
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    PostsService, 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

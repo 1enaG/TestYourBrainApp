@@ -1,3 +1,5 @@
+import { PostsComponent } from './posts/posts.component';
+import { ResultsComponent } from './results/results.component';
 import { GlobalRankingComponent } from './global-ranking/global-ranking.component';
 import { PersonalTestsComponent } from './personal-tests/personal-tests.component';
 import { PreviewComponent } from './preview/preview.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'preview-component', component: PreviewComponent }, 
   { path: 'personal-tests-component', component: PersonalTestsComponent }, 
   { path: 'global-ranking-component', component: GlobalRankingComponent }, 
+  { path: 'results-component', component: ResultsComponent }, 
+  { path: 'posts-component', component: PostsComponent }, 
   
 
 ];
