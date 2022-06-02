@@ -1,5 +1,7 @@
+import { TestsService } from './../services/tests.service';
 import { Component, OnInit } from '@angular/core';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Test } from '../entities/test';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,22 +12,45 @@ export class DashboardComponent implements OnInit {
   faEdit = faPenToSquare; 
   faDelete = faTrash; 
 
-  // isFav = false;  
-  // lime = "bg-lime-600 score-outer-circle"; 
-  // violet = "bg-violet-600 score-outer-circle"; 
+  tests: DashboardTest[] = []; 
+  rawTests: Test[] = []; 
 
-  tests: Test[] = []; 
-
-  constructor() { }
+  constructor(private service: TestsService) { }
 
   ngOnInit(): void {
-    this.tests =this.getTests(); 
+    //this.tests =this.getTests();
+    this.service.getTests().subscribe(response =>{
+        this.rawTests = response; 
+        this.rawTestsToDashboardTests(); 
+      }
+      );
   }
-  // onCircleClick(): void {
-  //     this.isFav = !this.isFav; 
-  //     console.log("Circle was clicked!"); 
-  // }
-  getTests(): Test[]{
+
+
+  //helper function (for now)
+  rawTestsToDashboardTests(){
+    this.tests = []; 
+    this.rawTests.forEach(test => {
+      let dTest = {
+        id: test.id, 
+        name: test.caption, 
+        subject: test.subject,
+        imgURL: test.icon != "base64 image" ? test.icon : "https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg",
+        avgScore: this.randomIntFromInterval(40, 100), 
+        count: this.randomIntFromInterval(2, 60), 
+      }; 
+      this.tests.push(dTest); 
+    });
+    // fill [dashboard] tests array using raw tests
+  }
+
+  // helper: 
+  randomIntFromInterval(min :number, max:number) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  //local dummy data: 
+  getTests(): DashboardTest[]{
     return  [
       {
         id: 1, 
@@ -70,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-interface Test{ //TODO: rename to DecoratedTest
+interface DashboardTest{ //TODO: rename to DecoratedTest
   id: number; 
   name: string; 
   subject: string; 

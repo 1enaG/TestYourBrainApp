@@ -37,6 +37,7 @@ import { GlobalRankingComponent } from './global-ranking/global-ranking.componen
 import { ResultsComponent } from './results/results.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostsService } from './services/posts.service';
+import { TestsService } from './services/tests.service';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { PostsService } from './services/posts.service';
   ],
   providers: [
     PostsService, 
+    TestsService, 
   ],
   bootstrap: [AppComponent]
 })
