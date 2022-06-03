@@ -1,19 +1,21 @@
 <form *ngIf="testForm"
-[formGroup]="testForm" > <!--*ngIf="testForm$ | async as form"  -->
+[formGroup]="testForm" (ngSubmit)="save()"> <!--*ngIf="testForm$ | async as form"  -->
 <!-- Name and Subject-->
     <div class="underlined-flex">
-        <input formControlName="testName" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
+        <input formControlName="caption" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
     </div>
     <div class="underlined-flex">
-        <input formControlName="testSubject" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Subject">
+        <input formControlName="subject" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Subject">
     </div>
+    <input formControlName="icon" type="hidden">
+    <input formControlName="open" type="hidden">
 <!--Questions-->
     <div formArrayName="questions">
         <div *ngFor="let question of questions?.controls; let qIdx = index"
             [formGroupName]="qIdx" >
             {{ qIdx }}
             <div class="underlined-flex">
-                <input formControlName="questionName" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
+                <input formControlName="caption" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
             </div>
             <mat-slide-toggle formControlName="required" class="font-sans">Required</mat-slide-toggle>
 
@@ -22,8 +24,11 @@
                 <div *ngFor="let answer of getAnswers(qIdx).controls; let ansIdx = index"
                 [formGroupName]="ansIdx">
                 {{ansIdx}}
+                    <div>
+                        <input formControlName="right" checked="right" type="checkbox">
+                    </div>
                     <div class="underlined-flex">
-                        <input formControlName="answerText" class="underlined-input text-sm font-normal" type="text" placeholder="Q Name">
+                        <input formControlName="text" class="underlined-input text-sm font-normal" type="text" placeholder="Q Name">
                     </div>
 
                 </div>
@@ -34,5 +39,6 @@
         </div>
     </div>
 
+    <button type="submit" [disabled]="!testForm.valid" class="button-yellow">Save</button>
 </form>
     

@@ -10,19 +10,55 @@ import { Test } from '../entities/test.model';
   providedIn: 'root'
 })
 export class TestsService {
-  private postsUrl = "http://localhost:3000/tests"; //base URL 
+  private testsUrl = "http://localhost:3000/tests"; //base URL 
 
   constructor(private http: HttpClient) { }
 
   getTests(){
     //return this.http.get<Post>(this.postsUrl);
-    return this.http.get<RawTest[]>(this.postsUrl); 
+    return this.http.get<RawTest[]>(this.testsUrl); 
   }
   getTest(id: number){
-    return this.http.get<Test>(this.postsUrl+"/"+id); 
+    return this.http.get<Test>(this.testsUrl+"/"+id); 
   }
   // addPost(newPost: Post){ 
   //   return this.http.post(this.postsUrl, JSON.stringify(newPost)); 
   // }
+  // updateTest(test: Test){
+  //   //return 
+  //   this.http.put(this.testsUrl+"/"+test.id, JSON.stringify(test)) 
+  //     .subscribe(
+  //       response =>
+  //         console.log(response)
+  //     ); 
+  // }
+  // addTest(test :Test){
+  //   console.log(JSON.stringify(test)); 
+  //   this.http.post(this.testsUrl, JSON.stringify(test))
+  //   .subscribe(response=>
+  //     console.log(response)); 
+  // }
+  addTest(test: Test){
+    test.id = 8; 
+    // ! doesn't work without headers
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(test);
+    console.log(body); 
+    this.http.post(this.testsUrl, body,{'headers':headers})
+      .subscribe(response=>
+        console.log(response)); 
+  }
+
+  updateTest(test: Test){
+    //test.id = 8; 
+    // ! doesn't work without headers
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(test);
+    console.log(body); 
+    this.http.put(this.testsUrl +"/"+test.id, body,{'headers':headers})
+      .subscribe(response=>
+        console.log(response)); 
+  }
+
 
 }

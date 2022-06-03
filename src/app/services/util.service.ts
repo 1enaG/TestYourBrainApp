@@ -19,9 +19,10 @@ export class UtilService {
     return this.service.getTest(1).pipe(
       map((response: any)=>this.fb.group({
         id: response.id,
-        testName: response.caption,
-        testSubject: response.subject,
-        testImage: response.icon, 
+        caption: response.caption,
+        subject: response.subject,
+        icon: response.icon,
+        open: response.open,  
         questions: this.fb.array(
            //generate a form for each question and add here
           response.questions.map((question: any) => this.generateQuestionForm(question))
@@ -36,7 +37,7 @@ export class UtilService {
   generateQuestionForm(question :Question){
     const questionForm = this.fb.group({
       id: question.id, 
-      questionName: question.caption, 
+      caption: question.caption, 
       required: question.required,
       answers: this.fb.array(
         question.answers.map((answer : Answer) =>
@@ -50,7 +51,7 @@ export class UtilService {
   generateAnswerForm(answer: Answer){
     const answerForm = this.fb.group({
       id: answer.id,
-      answerText: answer.text, 
+      text: answer.text, 
       right: answer.right, 
     })
     return answerForm; 
