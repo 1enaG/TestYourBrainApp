@@ -1,0 +1,38 @@
+<form *ngIf="testForm"
+[formGroup]="testForm" > <!--*ngIf="testForm$ | async as form"  -->
+<!-- Name and Subject-->
+    <div class="underlined-flex">
+        <input formControlName="testName" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
+    </div>
+    <div class="underlined-flex">
+        <input formControlName="testSubject" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Subject">
+    </div>
+<!--Questions-->
+    <div formArrayName="questions">
+        <div *ngFor="let question of questions?.controls; let qIdx = index"
+            [formGroupName]="qIdx" >
+            {{ qIdx }}
+            <div class="underlined-flex">
+                <input formControlName="questionName" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
+            </div>
+            <mat-slide-toggle formControlName="required" class="font-sans">Required</mat-slide-toggle>
+
+            <!-- Answers --> <!-- form array, within it -form group, within it - form control! -->
+            <div formArrayName="answers">
+                <div *ngFor="let answer of getAnswers(qIdx).controls; let ansIdx = index"
+                [formGroupName]="ansIdx">
+                {{ansIdx}}
+                    <div class="underlined-flex">
+                        <input formControlName="answerText" class="underlined-input text-sm font-normal" type="text" placeholder="Q Name">
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="underlined-flex">
+                <input formControlName="answerText" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
+            </div> -->
+        </div>
+    </div>
+
+</form>
+    

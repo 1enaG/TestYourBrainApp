@@ -1,3 +1,4 @@
+import { EditComponent } from './edit/edit.component';
 import { PostsComponent } from './posts/posts.component';
 import { ResultsComponent } from './results/results.component';
 import { GlobalRankingComponent } from './global-ranking/global-ranking.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'global-ranking-component', component: GlobalRankingComponent }, 
   { path: 'results-component', component: ResultsComponent }, 
   { path: 'posts-component', component: PostsComponent }, 
+  { path: 'edit-component', component: EditComponent }, 
   
 
 ];

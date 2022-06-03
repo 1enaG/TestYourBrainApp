@@ -38,6 +38,8 @@ import { ResultsComponent } from './results/results.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostsService } from './services/posts.service';
 import { TestsService } from './services/tests.service';
+import { QuestionComponent } from './question/question.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import { TestsService } from './services/tests.service';
     PersonalTestsComponent,
     GlobalRankingComponent,
     ResultsComponent,
-    PostsComponent
+    PostsComponent,
+    QuestionComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

@@ -2,19 +2,32 @@
     <ng-container class="title-text">Preview</ng-container>
 </page-title>
 <!-- TODO: QUESTION clearly has to be a separate component though! You can test how that would work here-->
-<div [formGroup]="testForm" action="">
-    <input formControlName="testName" type="text" placeholder="test name" class="bg-slate-500 rounded m-2 p-1" >
+<form [formGroup]="testForm" novalidate (ngSubmit)="save()" >
+    <input #testName formControlName="caption" type="text" placeholder="test name" class="bg-slate-500 rounded m-2 p-1" >
+    <div *ngIf="!testForm.controls['caption'].valid" class="text-red-400 text-sm">
+        Test name is required
+    </div> <!--validation error message-->
     <br>
-    <input formControlName="testSubject" type="text" placeholder="test subject" class="bg-slate-500 rounded m-2 p-1">
+    <input formControlName="subject" type="text" placeholder="test subject" class="bg-slate-500 rounded m-2 p-1">
     <div formArrayName="questions">
         <div  *ngFor="let question of questions.controls; let qIdx = index" class="ml-3" action=""> <!--array (questions)-->
-            <div [formGroupName]="qIdx">   
-            <!--control group: q name + options-->
+            <div [formGroupName]="qIdx">  
+                <question [group]="getQuestion(qIdx)" ></question>
+            </div>
+        </div>
+    </div>
+    <a href="" (click)="addQuestion()" class="underline decoration-amber-300 text-lg ml-3">Add question</a>
+    <br>
+    <button type="submit" class="button-yellow" [disabled]="!testForm.valid">Save</button>
+</form>
+
+
+  <!--control group: q name + options
                 <input formControlName="questionName" type="text" placeholder="question name" class="bg-slate-500 rounded m-2 p-1">
                 <br>
                 <input formControlName="questionType" type="text" placeholder="question type" class="bg-slate-500 rounded m-2 p-1"> 
 
-                <div formArrayName="options" class="ml-3"> <!--array many of those-->
+                <div formArrayName="options" class="ml-3"> 
                     <div *ngFor="let option of getOptions(qIdx).controls; let optIdx = index">
                         <input  type="text" placeholder="-option 1" class="bg-slate-500 rounded m-2 p-1">
                         <br>
@@ -26,10 +39,4 @@
                 
                 <br>
                 <a href="" (click)="removeQuestion(qIdx)" class="underline decoration-amber-300 text-lg ml-3">Remove question</a>
-            
-            </div>
-        </div>
-    </div>
-    <a href="" (click)="addQuestion()" class="underline decoration-amber-300 text-lg ml-3">Add question</a>
-    
-</div>
+             -->

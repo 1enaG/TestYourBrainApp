@@ -1,0 +1,58 @@
+<div [formGroup]="questionForm"> <!-- [formGroupName]="qIdx" - input field, index of formGroup sent from TestForm-->
+    <div class="md:flex md:justify-between gap-5">
+        <div class="underlined-flex flex-1">
+            <!--QUESTION NAME-->
+            <input formControlName="caption" class="underlined-input text-lg font-semibold" type="text" placeholder="Untitled question">
+        </div>
+        <div class="flex items-center">
+            <fa-icon [icon]="faUploadImage" class="fa-xl m-1 hover:text-white" matTooltip="Upload image"></fa-icon>
+        </div>
+        
+        <!--Question Types dropdown-->
+        <div>
+            <mat-form-field class="font-sans m-0"> <!-- appearance="fill" -->
+                <mat-label class="text-slate-200" >Question Type</mat-label>
+                <mat-select formControlName="questionType" > <!--[(ngModel)]="defaultQuestionType"-->
+                    <!--(onSelectionChange)="onQuestionTypeChange()" -->
+                    <mat-option *ngFor="let questionType of eQuestionType | keyvalue"  value="questionType.key" >
+                        {{ questionType.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+        </div>
+
+    </div>
+    <br>
+<!--     
+    <div formArrayName="options">
+        
+        <div *ngFor="let option of options.controls; let optIdx = index">
+            <input  type="radio" class="h-4 w-4 mr-2">
+
+           // formControlName="{{optIdx}}"
+            <input type="text" FormControlName="optIdx" class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+            <fa-icon (click)="removeOption(optIdx)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
+        
+        </div>
+    </div> 
+       
+    
+    <br>
+    <a (click)="addOption()"  class="link-yellow ml-6">Add option</a>
+    <br>
+     -->
+    <div class="flex justify-between mt-6">
+        <div id="leftDiv" class="flex flex-row">
+            <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
+            <fa-icon  [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
+        <!--(click)="removeQuestion(qIdx)"-->
+        </div>
+
+        <mat-slide-toggle class="font-sans">Required</mat-slide-toggle>
+    </div>
+
+    <div class="py-2"> <!-- horizontal line-->
+        <div class="w-full border-t border-slate-500"></div>
+    </div>
+</div>
