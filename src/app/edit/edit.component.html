@@ -14,6 +14,7 @@
         <div *ngFor="let question of questions?.controls; let qIdx = index"
             [formGroupName]="qIdx" >
             {{ qIdx }}
+            <input type="hidden" formControlName="id"> <!--ShADY thing to do.. -->
             <div class="underlined-flex">
                 <input formControlName="caption" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
             </div>
@@ -28,17 +29,21 @@
                         <input formControlName="right" checked="right" type="checkbox">
                     </div>
                     <div class="underlined-flex">
-                        <input formControlName="text" class="underlined-input text-sm font-normal" type="text" placeholder="Q Name">
+                        <input formControlName="text" class="underlined-input text-sm font-normal" type="text" placeholder="ans text">
                     </div>
-
+                    <button (click)="removeAnswer(qIdx, ansIdx)" class="">Remove Answer</button>
                 </div>
             </div>
+            <button (click)="addAnswer(qIdx)" class="underline-yellow">Add Option+</button>
+            <br>
             <!-- <div class="underlined-flex">
                 <input formControlName="answerText" class="underlined-input text-xl font-semibold" type="text" placeholder="Q Name">
             </div> -->
+            <button (click)="removeQuestion(qIdx)" class="button-yellow">Delete question</button>
         </div>
     </div>
-
+    <button (click)="addQuestion()" class="underline-yellow">Add Question+</button>
+    <br>
     <button type="submit" [disabled]="!testForm.valid" class="button-yellow">Save</button>
 </form>
     

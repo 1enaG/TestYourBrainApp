@@ -48,11 +48,36 @@ export class UtilService {
     return questionForm; 
   }
 
+  //We need to assign question ids somehow at once. 
+  //Because we need to know WHICH question to add options to!
+  generateEmptyQuestionForm(newId: number){
+    const questionForm = this.fb.group({
+      id: newId,  //what do i do with the id?.. We have to assign it an id somehow...
+      caption: "", 
+      required: true,
+      answers: this.fb.array([
+        this.generateEmptyAnswerForm(1) // brand new question -> id of first answer = 1 
+      ] 
+      ) //end of answers array
+    }); 
+    return questionForm; 
+  }
+
+
   generateAnswerForm(answer: Answer){
     const answerForm = this.fb.group({
       id: answer.id,
       text: answer.text, 
       right: answer.right, 
+    })
+    return answerForm; 
+  }
+
+  generateEmptyAnswerForm(newId: number){
+    const answerForm = this.fb.group({
+      id: newId,
+      text: "", 
+      right: false, 
     })
     return answerForm; 
   }
