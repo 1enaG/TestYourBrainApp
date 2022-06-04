@@ -2,100 +2,101 @@
     <ng-container class="title-text">Create Test</ng-container>
 </page-title>
 
-<form [formGroup]="testForm" action="" class="accent-amber-300" >
-    <div class="md:flex">
-        <div class="md:order-2 md:flex-none lg:w-1/2">
-            <div class="underlined-flex">
-                <input formControlName="testName" class="underlined-input text-xl font-semibold" type="text" placeholder="Test Name">
-            </div>
-        
-            <div class="underlined-flex">
-                <input formControlName="testSubject" class="underlined-input text-lg" type="text" placeholder="Subject">
-            </div>
+<form *ngIf="testForm" class="accent-amber-300"
+[formGroup]="testForm" (ngSubmit)="save()"> <!--*ngIf="testForm$ | async as form"  -->
+
+<!--Test Name, Subject, Image, Change Image button-->
+<div class="md:flex">
+    <div class="md:order-2 md:flex-none lg:w-1/2">
+        <div class="underlined-flex">
+            <input formControlName="caption" class="underlined-input text-xl font-semibold" type="text" 
+                placeholder="Test Name">
         </div>
-        <!-- image-->
-        <div class="md:flex-none">
-            <img class="object-cover h-48 w-48 rounded-lg mr-2"
-            src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
-            alt="Test cover image">
-
-            
-        </div>  
-
+    
+        <div class="underlined-flex">
+            <input formControlName="subject" class="underlined-input text-lg" type="text" placeholder="Subject">
+        </div>
+        <input formControlName="icon" type="hidden">
+        <input formControlName="open" type="hidden">
     </div>
-
-    <label class="col-start-2 row-start-2 text-lg">Change Image</label>
-    <br>
-    <input type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-4 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
-    <div class="py-2"> <!-- horizontal line-->
+    <!-- image-->
+    <div class="md:flex-none"> <!--src="icon" 
+    -->
+        <img class="object-cover h-48 w-48 rounded-lg mr-2"
+        
+        src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
+        alt="Test cover image">
+    </div>  
+</div>
+<label class="col-start-2 row-start-2 text-lg">Change Image</label>
+<br>
+<input type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-4 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+<div class="py-2"> <!-- horizontal line-->
     <div class="w-full border-t border-slate-500"></div>
-    </div>
+</div>
 
-    <!--QUESTION FORM-->
-    <form formArrayName="questions" action="" *ngFor="let question of questions.controls; let qIdx = index"> <!--[formGroup]="questionForm"-->
-        <div [formGroupName]="qIdx">
+<!--Question-->
+    <div formArrayName="questions">
+        <div *ngFor="let question of questions?.controls; let qIdx = index"
+            [formGroupName]="qIdx" >
             <div class="md:flex md:justify-between gap-5">
                 <div class="underlined-flex flex-1">
-                    <!--QUESTION NAME-->
-                    <input formControlName="questionName" class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+                    <!--Question Name and Id-->
+                    <input formControlName="caption" class="underlined-input text-lg font-semibold " type="text" placeholder="Untitled question">
+                    <input type="hidden" formControlName="id">
                 </div>
                 <div class="flex items-center">
                     <fa-icon [icon]="faUploadImage" class="fa-xl m-1 hover:text-white" matTooltip="Upload image"></fa-icon>
                 </div>
-                
+                    <!--QuestionType Dropdown-->
                 <div>
                     <mat-form-field class="font-sans m-0"> <!-- appearance="fill" -->
                         <mat-label class="text-slate-200" >Question Type</mat-label>
-                        <mat-select formControlName="questionType" > <!--[(ngModel)]="defaultQuestionType"-->
+                        <mat-select  > <!--[(ngModel)]="defaultQuestionType" formControlName="questionType"-->
                             <mat-option *ngFor="let questionType of eQuestionType | keyvalue"  value="questionType.key" (onSelectionChange)="onQuestionTypeChange()">
                                 {{ questionType.value }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                
                 </div>
         
             </div>
-            <br>
-            
-            <div formArrayName="options">
-                <div *ngFor="let option of getOptions(qIdx).controls; let optIdx = index">
-                    <input  type="radio" class="h-4 w-4 mr-2">
+            <!--Answers-->
+            <div formArrayName="answers">
+                <div *ngFor="let answer of getAnswers(qIdx).controls; let ansIdx = index"
+                [formGroupName]="ansIdx">
+                    <input formControlName="right" checked="right" type="checkbox" class="h-4 w-4 mr-2">
 
                     <!--formControlName="{{optIdx}}"-->
-                    <input type="text"  class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
-                    <fa-icon (click)="removeOption(qIdx, optIdx)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
-                
+                    <input formControlName="text" type="text"  class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">
+                    <fa-icon (click)="removeAnswer(qIdx, ansIdx)" [icon]="faXmark" class="text-slate-400 fa-lg m-1 hover:text-white"  matTooltip="Delete Option"></fa-icon>    
+                    <input type="hidden" formControlName="id"> <!--TRY-->
                 </div>
-            </div> 
-               
-            
-            <br>
-            <a (click)="addOption(qIdx)"  class="link-yellow ml-6">Add option</a>
-            <br>
-            
+            </div> <!-- end of answers-->
+
+            <div>
+                <a (click)="addAnswer(qIdx)"  class="link-yellow ml-6">Add option +</a>
+            </div>
+
+            <!--Duplicate and Delete Question, Required Slider-->
             <div class="flex justify-between mt-6">
                 <div id="leftDiv" class="flex flex-row">
                     <fa-icon [icon]="faCopy" class="fa-lg m-1 hover:text-white"  matTooltip="Duplicate Question"></fa-icon>
                     <fa-icon (click)="removeQuestion(qIdx)" [icon]="faDelete" class="fa-lg m-1 hover:text-white"  matTooltip="Delete Question"></fa-icon>
                 </div>
 
-                <mat-slide-toggle class="font-sans">Required</mat-slide-toggle>
+                <mat-slide-toggle formControlName="required" class="font-sans">Required</mat-slide-toggle>
             </div>
 
             <div class="py-2"> <!-- horizontal line-->
                 <div class="w-full border-t border-slate-500"></div>
             </div>
-        </div>
-    </form> <!--end of question--> 
-        <a (click)="addQuestion()" class="link-yellow ml-6 text-lg">Add Question +</a>
-    
+        </div> <!--end of question-->
+            <a (click)="addQuestion()" class="link-yellow ml-6 text-lg">Add Question +</a>  
+    </div><!--End of questions-->
     <div class="flex w-full place-content-end">
-        <button class="button-yellow">Save test</button>
+        <button type="submit" [disabled]="!testForm.valid" class="button-yellow">Save</button>
     </div>
-
-    <!-- <pre>{{testForm.value | json}}</pre> -->
-    
-  
-
 </form>
+
+

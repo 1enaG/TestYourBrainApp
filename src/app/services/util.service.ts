@@ -13,10 +13,27 @@ export class UtilService {
   constructor(private service: TestsService, private fb: FormBuilder) { 
   }
 
-  // (test edit form)
+  // for CREATE test: 
+  getEmptyTestForm(){
+    return this.fb.group({
+      id: 0, //or smth else? EMPTY and then we get an ID in return? 
+      caption: "",
+      subject: "",
+      icon: "",
+      open: false,  
+      questions: this.fb.array([
+         //generate a form for each question and add here
+        this.generateEmptyQuestionForm(0) // brand new question -> id = 0 
+      ])// end of questions array
+    }
+    ); 
+  }
+
+ 
+  // for EDIT test: 
   getTestForm(){
-    this.service.getTest(1).subscribe(response =>console.log(response)); 
-    return this.service.getTest(1).pipe(
+    this.service.getTest(4).subscribe(response =>console.log(response)); 
+    return this.service.getTest(4).pipe(
       map((response: any)=>this.fb.group({
         id: response.id,
         caption: response.caption,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
-import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
+import { FormArray, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TestsService } from '../services/tests.service';
 import { SCROLL_THROTTLE_MS } from '@angular/material/tooltip';
@@ -42,6 +42,9 @@ export class EditComponent implements OnInit {
   }
   get questions(){
     return this.testForm.get('questions') as FormArray; 
+  }
+  get icon(){
+    return this.testForm.get('icon') as FormControl; 
   }
   
   getAnswers(qIdx: number){

@@ -39,12 +39,12 @@ export class TestsService {
   //     console.log(response)); 
   // }
   addTest(test: Test){
-    test.id = 8; 
+    //test.id = 8; 
     // ! doesn't work without headers
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(test);
     console.log(body); 
-    this.http.post(this.testsUrl, body,{'headers':headers})
+    this.http.post(this.testsUrl, body,{'headers':headers}) //TODO: move subscriptiont to create component! Display an alert!
       .subscribe(response=>
         console.log(response)); 
   }

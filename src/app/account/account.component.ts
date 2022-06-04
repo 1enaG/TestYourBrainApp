@@ -1,3 +1,4 @@
+import { ImageService } from './../services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 
@@ -11,7 +12,7 @@ export class AccountComponent implements OnInit {
     "Zimbabwe"];
 
   avatar = "https://www.pngitem.com/pimgs/m/78-786293_1240-x-1240-0-avatar-profile-icon-png.png";  
-  constructor() { }
+  constructor(private service: ImageService) { }
 
   ngOnInit(): void {
   }
@@ -21,33 +22,12 @@ export class AccountComponent implements OnInit {
 
     let imageFile:File = fileInput.files[0];  
     console.log(imageFile); 
-    this.toBase64(imageFile); 
+    //subscribe to an observable you get from the service!
+    this.service.toBase64(imageFile)
+      .subscribe((data)=>{
+        console.log(data); 
+        this.avatar = data; 
+      }); 
 
   }
-  toBase64(file :File){ //img -> base64 encoding 
-    const observable = new Observable((subscriber: Subscriber<any>)=>{
-        //read the file here
-        this.readFile(file, subscriber); 
-    }
-    );
-    //once the observable finishes the task: 
-    observable.subscribe((data)=>{
-      console.log(data); 
-      this.avatar = data; 
-
-    }); 
-  }
-  readFile(file:File, subscriber:Subscriber<any>){
-    const fileReader = new FileReader(); 
-    fileReader.readAsDataURL(file); 
-    fileReader.onload=()=>{
-      subscriber.next(fileReader.result); 
-      subscriber.complete(); 
-    }
-    fileReader.onerror=(error)=>{
-      subscriber.error(error); 
-      subscriber.complete(); 
-    }
-  }
-
 }

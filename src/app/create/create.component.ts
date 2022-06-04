@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms'; 
+import { TestsService } from '../services/tests.service';
+import { UtilService } from '../services/util.service';
 
 enum QuestionType {
   Radio = "Multiple Choice: Single Answer",
@@ -14,93 +16,104 @@ enum QuestionType {
 })
 
 export class CreateComponent implements OnInit {
+//testForm$: Observable<FormGroup> = this.util.getTestForm();  
+testForm!: FormGroup; 
+faDelete = faTrash;
+faCopy = faCopy; 
+faUploadImage = faImage; 
+faXmark = faXmark; 
 
-  fb: FormBuilder; 
-  faDelete = faTrash;
-  faCopy = faCopy; 
-  faUploadImage = faImage; 
-  faXmark = faXmark; 
+eQuestionType = QuestionType; // enum 
+
+constructor(private readonly util: UtilService, private service: TestsService, private fb: FormBuilder) {
+  // this.testForm$.subscribe(
+  //   response => {
+  //     this.testForm = response; 
+  //   }
+  // );
+}
+ngOnInit(): void {
+  // get EMPTY TEST FORM: 
+  this.testForm = this.util.getEmptyTestForm(); // no need to subscribe bc we are not calling the server
+}
+get questions(){
+  return this.testForm.get('questions') as FormArray; 
+}
+get icon(){
+  return this.testForm.get('icon') as FormControl; 
+}
+
+getAnswers(qIdx: number){
+  return this.questions.at(qIdx).get('answers') as FormArray; 
+}
+
+addQuestion(){
+  let newId = this.assignQuestionId(); 
+  this.questions.push(this.util.generateEmptyQuestionForm(newId)); 
+}
+
+
+// this finds max question ID for this test and assigns returns id++ 
+//it's a bit of a crotch, but we need immediate id assignment! 
+assignQuestionId(){ //helper function
+  let maxId = 0; 
+  this.questions.controls.forEach(cg => {
+    let id = cg.get("id")?.value; 
+    if(id >= maxId){
+      maxId = id; 
+    }
+  });
+ return maxId+1; 
+}
+
+assignAnswerId(qIdx: number){ //helper function
+  let maxId = 0; 
+  this.getAnswers(qIdx).controls.forEach(cg => {
+    let id = cg.get("id")?.value; 
+    if(id >= maxId){
+      maxId = id; 
+    }
+  });
+ return maxId+1; 
+}
+
+
+
+removeQuestion(qIdx: number){
+  this.questions.removeAt(qIdx); // we use INDEX in array, not the question's ID!! 
+}
+
+addAnswer(qIdx: number){
+  const newId = this.assignAnswerId(qIdx); 
+  this.getAnswers(qIdx).push(this.util.generateEmptyAnswerForm(newId)); 
+}
+removeAnswer(qIdx: number, ansIdx:number){
+  this.getAnswers(qIdx).removeAt(ansIdx);
+}
+// addOption(qIdx: number){
+//   this.getOptions(qIdx).push(new FormControl()); // I hope GetOptions return by reference, not a copy 
+// }
+
+// removeOption(qIdx: number, optIdx:number){ //qidx, optIdx 
+//   this.getOptions(qIdx).removeAt(optIdx); 
+// }
+
+save(){
+  if (this.testForm.invalid) {
+    // stop here if it's invalid
+    alert('Invalid input');
+    return;
+  }
+  console.log(this.testForm.getRawValue()); 
+  this.service.addTest(this.testForm.getRawValue()); 
   
-  eQuestionType = QuestionType; // enum 
 
-  defaultQuestionType = QuestionType.Radio; 
-  testForm: FormGroup; 
+}
 
 
+onQuestionTypeChange(){
 
-  
-
-  constructor(fb: FormBuilder) {
-  
-    this.fb = fb; // so it can be used anywhere in the class, not just in ctor
-    this.testForm = fb.group({
-      testName: [''], 
-      testSubject: [''],
-      questions: fb.array([
-        //individual question (with options)
-        fb.group({ //if it's within an array, it doesn't have a name, only an index! 
-          questionName: [''], 
-          questionType: [this.eQuestionType.Radio], //default value for question type 
-          options: fb.array([
-            new FormControl()
-          ]),
-          // other fields? required etc  
-        })
-      ]), 
-    }); 
-  
-
-   }
-
-  ngOnInit(): void {
-  }
-
-  // getters to easily access form controls 
-  get testName(){
-    return this.testForm.get("testName"); 
-  }
-  get testSubject(){
-    return this.testForm.get("testSubject"); 
-  }
-  get questions(){
-    return this.testForm.get("questions") as FormArray; 
-  }
-
-  getOptions(idx: number){
-    return this.questions.at(idx).get('options') as FormArray; 
-  }
-
-  addQuestion(){
-    this.questions.push(
-      this.fb.group({ 
-        questionName: [''], 
-        questionType: [this.eQuestionType.Radio],  
-        options: this.fb.array([
-          new FormControl()
-        ]),
-        // other fields? required etc  
-      })
-    ); //maybe has to have content inside? 
-  }
-
-  removeQuestion(idx: number){
-    this.questions.removeAt(idx);
-  }
-
-  
-  addOption(qIdx: number){
-    this.getOptions(qIdx).push(new FormControl()); // I hope GetOptions return by reference, not a copy 
-  }
-
-  removeOption(qIdx: number, optIdx:number){ //qidx, optIdx 
-    this.getOptions(qIdx).removeAt(optIdx); 
-  }
-
-
-
-  onQuestionTypeChange(){
-
-  }
+}
 
   // TODO: Question Validation: options are not the same 
 
