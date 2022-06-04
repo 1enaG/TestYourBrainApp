@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalRankingComponent implements OnInit {
 
+  tabId = "topTests"; // keeps track of current tab
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  onTabChange(tabId :string){
+    if(tabId=="topTests"){
+      this.tabId = "topTests"; 
+    }else if(tabId == "topUsers"){
+      this.tabId = "topUsers"; 
+    }
+  }
+
+  
 
 }

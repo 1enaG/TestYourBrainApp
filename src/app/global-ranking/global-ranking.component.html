@@ -2,26 +2,45 @@
     <ng-container class="title-text">Global Ranking</ng-container>
     <ng-container class="additional">
         <!-- <fa-icon [icon]="faSearch" class="fa-sm m-1 text-white"></fa-icon> -->
-        <input formControlName="testName" type="text" placeholder="search..." 
+        <input type="text" placeholder="search..." 
             class="bg-slate-500 rounded-xl px-2 py-1" >
     </ng-container>
 </page-title>
+<!-- <mat-tab-group mat-align-tabs="start" class="text-white">
+    <mat-tab label="First">Content 1</mat-tab>
+    <mat-tab label="Second">Content 2</mat-tab>
+    <mat-tab label="Third">Content 3</mat-tab>
+</mat-tab-group> -->
 
-
-
-<div>
+<!-- Unique ID for the tabs! -->
+<div id="tabs">
     <ul class="hidden font-medium text-center text-slate-200 rounded-lg divide-x divide-slate-800 sm:flex">
-        <li class="w-full">
-        <a href="#" class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none"
-            aria-current="page">Top Tests</a>
+        <li id="topTests" class="w-full" (click)="onTabChange('topTests')">
+            <div [class.border-blue-400]="tabId === 'topTests'" [class.text-blue-400]="tabId === 'topTests'" 
+                 class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+                aria-current="page">
+                Top Tests
+            </div>
         </li>
-        <li class="w-full">
-        <a href="#" class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none ">
-            Top Users
-        </a>
-        </li>
-        
+        <li id="topUsers" class="w-full" (click)="onTabChange('topUsers')">
+            <div [class.border-blue-400]="tabId === 'topUsers'" [class.text-blue-400]="tabId === 'topUsers'" 
+                class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none ">
+                Top Users
+            </div>
+        </li>  
     </ul>
+</div>
+
+<div class="content" *ngIf="tabId === 'topTests'">
+    <div>
+        LIST OF MOST POPULAR TESTS
+    </div>
+</div>
+
+<div class="content" *ngIf="tabId === 'topUsers'">
+    <div>
+        LIST OF MOST ACCOMPLISHED USERS
+    </div>
 </div>
     
     

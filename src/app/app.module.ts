@@ -41,6 +41,8 @@ import { TestsService } from './services/tests.service';
 import { QuestionComponent } from './question/question.component';
 import { EditComponent } from './edit/edit.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { EditComponent } from './edit/edit.component';
     MatInputModule, 
     MatNativeDateModule, //date!
     MatTooltipModule, 
+    MatTabsModule,
     ReactiveFormsModule, 
     HttpClientModule,
   ],
