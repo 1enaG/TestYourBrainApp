@@ -23,8 +23,8 @@ export class ScoreComponent implements OnInit {
     if(score > 70){
       return  "bg-lime-600"; 
     }
-    if(score > 60){
-      return  "bg-lime-500"; 
+    if(score > 60){ //lime-500 (custom value instead!)
+      return  "bg-[#D1F100]"; 
     }
     if(score > 50){
       return  "bg-yellow-400"; 

@@ -19,8 +19,8 @@
   "tests": [
     {
       "id": 1,
-      "caption": "Updated Test 3",
-      "subject": "Subject 2",
+      "caption": "Synonims",
+      "subject": "English",
       "icon": "base64 image",
       "open": false,
       "questions": [
@@ -43,13 +43,23 @@
               "id": 5,
               "text": "huge",
               "right": true
+            },
+            {
+              "id": 6,
+              "text": "enormous",
+              "right": true
+            },
+            {
+              "id": 7,
+              "text": "large",
+              "right": true
             }
           ]
         },
         {
           "id": 2,
           "caption": "What is a synonim for cordial?",
-          "required": false,
+          "required": true,
           "answers": [
             {
               "id": 1,
@@ -81,19 +91,24 @@
           ]
         },
         {
-          "id": 15,
-          "caption": "What is a synonim for emerald? ",
-          "required": true,
+          "id": 16,
+          "caption": "What is a synonim for lilac?",
+          "required": false,
           "answers": [
             {
               "id": 1,
-              "text": "yellow",
-              "right": false
+              "text": "purple",
+              "right": true
             },
             {
               "id": 2,
-              "text": "lilac",
-              "right": true
+              "text": "grey",
+              "right": false
+            },
+            {
+              "id": 3,
+              "text": "blue",
+              "right": false
             }
           ]
         }

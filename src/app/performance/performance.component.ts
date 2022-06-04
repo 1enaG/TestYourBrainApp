@@ -104,11 +104,11 @@ export class PerformanceComponent implements OnInit {
   // Dummy data suppliers (temporary!)
   getDates(): Date[]{
     return [
-      new Date(2022, 5, 10), 
-      new Date(2022, 5, 11), 
-      new Date(2022, 5, 12), 
-      new Date(2022, 5, 13),
-      new Date(2022, 5, 14),
+      new Date(2022, 4, 10), 
+      new Date(2022, 4, 11), 
+      new Date(2022, 4, 12), 
+      new Date(2022, 4, 13),
+      new Date(2022, 4, 14),
     ];
   }
   getColors(): string[]{

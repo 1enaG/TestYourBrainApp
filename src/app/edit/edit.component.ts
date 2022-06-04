@@ -4,7 +4,14 @@ import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TestsService } from '../services/tests.service';
 import { SCROLL_THROTTLE_MS } from '@angular/material/tooltip';
+import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+
+enum QuestionType {
+  Radio = "Multiple Choice: Single Answer",
+  Checkbox = "Mutliple Choice: Multiple Answers",
+  Text = "Short Text",
+}
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -12,9 +19,14 @@ import { SCROLL_THROTTLE_MS } from '@angular/material/tooltip';
 })
 export class EditComponent implements OnInit {
 
-  //testForm$: Observable<FormGroup> = this.util.getTestForm(); 
-  qVal = 15; 
+  //testForm$: Observable<FormGroup> = this.util.getTestForm();  
   testForm!: FormGroup; 
+  faDelete = faTrash;
+  faCopy = faCopy; 
+  faUploadImage = faImage; 
+  faXmark = faXmark; 
+
+  eQuestionType = QuestionType; // enum 
   
   constructor(private readonly util: UtilService, private service: TestsService, private fb: FormBuilder) {
     // this.testForm$.subscribe(
@@ -103,6 +115,11 @@ export class EditComponent implements OnInit {
     //     .subscribe((): void => {
     //         alert('Saved!');
     //     });
+
+  }
+
+  
+  onQuestionTypeChange(){
 
   }
 
