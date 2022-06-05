@@ -1,45 +1,115 @@
 <page-title>
     <ng-container class="title-text">Global Ranking</ng-container>
-    <ng-container class="additional">
-        <!-- <fa-icon [icon]="faSearch" class="fa-sm m-1 text-white"></fa-icon> -->
-        <input type="text" placeholder="search..." 
+    <ng-container class="additional"> <!-- *ngIf="..." two search bars-->
+        <input *ngIf="tabId === 'topTests'"
+            type="text" placeholder="search..." [(ngModel)]="testSearchText"
+            class="bg-slate-500 rounded-xl px-2 py-1" >
+        <!-- alternative search bar -->
+        <input *ngIf="tabId === 'topUsers'"
+            type="text" placeholder="search..." [(ngModel)]="userSearchText"
             class="bg-slate-500 rounded-xl px-2 py-1" >
     </ng-container>
 </page-title>
-<!-- <mat-tab-group mat-align-tabs="start" class="text-white">
-    <mat-tab label="First">Content 1</mat-tab>
-    <mat-tab label="Second">Content 2</mat-tab>
-    <mat-tab label="Third">Content 3</mat-tab>
-</mat-tab-group> -->
 
 <!-- Unique ID for the tabs! -->
 <div id="tabs">
     <ul class="hidden font-medium text-center text-slate-200 rounded-lg divide-x divide-slate-800 sm:flex">
         <li id="topTests" class="w-full" (click)="onTabChange('topTests')">
             <div [class.border-blue-400]="tabId === 'topTests'" [class.text-blue-400]="tabId === 'topTests'" 
-                 class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+                 class="inline-block p-1 w-full border-b-4  hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none"
                 aria-current="page">
                 Top Tests
             </div>
         </li>
         <li id="topUsers" class="w-full" (click)="onTabChange('topUsers')">
             <div [class.border-blue-400]="tabId === 'topUsers'" [class.text-blue-400]="tabId === 'topUsers'" 
-                class="inline-block p-1 w-full border-b-4 border-slate-300 hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none ">
+                class="inline-block p-1 w-full border-b-4  hover:border-blue-400 hover:text-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none ">
                 Top Users
             </div>
         </li>  
     </ul>
 </div>
 
+<!-- TESTS CONTENT-->
 <div class="content" *ngIf="tabId === 'topTests'">
-    <div>
-        LIST OF MOST POPULAR TESTS
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1 py-2">
+        <div class="basis-1/12 table-heading-elem flex justify-center items-center"><p>№</p></div>
+        <div class="basis-5/12 table-heading-elem">Test</div>
+        <div (click)="sortTestsByCount()" class="basis-3/12 table-heading-elem flex justify-center items-center hover:text-blue-400"> 
+            <p>Count</p>
+            <div class="pb-1 pl-1"><fa-icon [icon]="faSort" class="fa-sm"></fa-icon></div>
+        </div>
+        <div class="basis-3/12 table-heading-elem flex justify-center items-center hover:text-blue-400">
+            <p>Avg Score</p>
+            <div (click)="sortTestsByScore()" class="pb-1 pl-1"><fa-icon [icon]="faSort" class="fa-sm"></fa-icon></div>
+        </div>
     </div>
+    <!--Test 1-->
+    <div class="flex flex-row  basis-1 py-2" *ngFor="let t of tests | filter:testSearchText; let idx = index">
+        <!--№-->
+        <div class="basis-1/12 table-row-elem flex flex-col sm:flex-row justify-center items-center">
+            {{ idx+1 }}
+        </div>
+        <!--Test name-->
+        <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            </test-details>
+        </div>
+      
+        <!--Count-->
+        
+        <div class="basis-3/12 table-row-elem flex justify-center items-center">
+            <count [count]="t.count"></count>
+        </div>
+
+        <!--Avg Score-->
+        <div class="basis-3/12 table-row-elem  flex items-center justify-center">
+            <score [scoreValue] ="t.avgScore"></score>
+        </div>
+    </div>
+    
+
 </div>
 
+<!--USERS CONTENT-->
 <div class="content" *ngIf="tabId === 'topUsers'">
-    <div>
-        LIST OF MOST ACCOMPLISHED USERS
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1 py-2">
+        <div class="basis-1/12 table-heading-elem flex justify-center items-center"><p>№</p></div>
+        <div class="basis-5/12 table-heading-elem">User</div>
+        <div (click)="sortUsersByCount()" class="basis-3/12 table-heading-elem flex justify-center items-center hover:text-blue-400"> 
+            <p>Count</p>
+            <div class="pb-1 pl-1"><fa-icon [icon]="faSort" class="fa-sm"></fa-icon></div>
+        </div>
+        <div (click)="sortUsersByScore()"  class="basis-3/12 table-heading-elem flex justify-center items-center hover:text-blue-400">
+            <p>Avg Score</p>
+            <div class="pb-1 pl-1"><fa-icon [icon]="faSort" class="fa-sm"></fa-icon></div>
+        </div>
+    </div>
+     <!--User 1-->
+     <div class="flex flex-row  basis-1 py-2" *ngFor="let u of users | filter:userSearchText; let idx = index">
+        <!--№-->
+        <div class="basis-1/12 table-row-elem flex flex-col sm:flex-row justify-center items-center">
+            {{ idx+1 }}
+        </div>
+        <!--Test name-->
+        <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-between">
+            <user-details [username]="u.username" [firstName]="u.firstName" [lastName]="u.lastName"
+                [imgURL]="u.imgURL">
+            </user-details>
+        </div>
+      
+        <!--Count-->
+        
+        <div class="basis-3/12 table-row-elem flex justify-center items-center">
+            <test-count [count]="u.count"></test-count>
+        </div>
+
+        <!--Avg Score-->
+        <div class="basis-3/12 table-row-elem  flex items-center justify-center">
+            <score [scoreValue] ="u.avgScore"></score>
+        </div>
     </div>
 </div>
     

@@ -21,10 +21,10 @@
         <div class="basis-2/12 table-row-elem flex flex-col  items-center">
         
 
-            <mat-form-field class="font-sans"> <!-- appearance="fill" -->
+            <mat-form-field color="accent" class="font-sans"> <!-- appearance="fill" -->
                 <mat-label class="text-slate-200 font-sans" >Status</mat-label>
                 <mat-select [(ngModel)]="t.status" class="text-slate-200">
-                    <mat-option *ngFor="let status of statusOptions" class="font-sans"
+                    <mat-option *ngFor="let status of statusOptions" class="font-sans bg-slate-700 text-slate-200 active:bg-lime-400"
                         [value] = "status" >
                         {{ status }}
                     </mat-option>

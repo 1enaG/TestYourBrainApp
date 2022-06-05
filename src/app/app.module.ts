@@ -42,6 +42,9 @@ import { QuestionComponent } from './question/question.component';
 import { EditComponent } from './edit/edit.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { TestCountComponent } from './test-count/test-count.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -67,7 +70,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     ResultsComponent,
     PostsComponent,
     QuestionComponent,
-    EditComponent
+    EditComponent,
+    UserDetailsComponent,
+    TestCountComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +89,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTabsModule,
     ReactiveFormsModule, 
     HttpClientModule,
+    Ng2SearchPipeModule, 
   ],
   providers: [
     PostsService, 
