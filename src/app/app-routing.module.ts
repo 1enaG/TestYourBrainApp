@@ -1,3 +1,4 @@
+import { DevApiComponent } from './dev-api/dev-api.component';
 import { EditComponent } from './edit/edit.component';
 import { PostsComponent } from './posts/posts.component';
 import { ResultsComponent } from './results/results.component';
@@ -31,6 +32,9 @@ const routes: Routes = [
   { path: 'results-component', component: ResultsComponent }, 
   { path: 'posts-component', component: PostsComponent }, 
   { path: 'edit-component', component: EditComponent }, 
+
+  { path: 'edit-component/:testId', component: EditComponent }, 
+  { path: 'dev-api-component', component: DevApiComponent }, 
   
 
 ];

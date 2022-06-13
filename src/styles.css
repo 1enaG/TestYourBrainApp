@@ -5,7 +5,7 @@
 
 
 .button-yellow{
-    @apply bg-amber-300 text-slate-800 font-semibold rounded border-none px-2 py-1 mr-2 hover:bg-amber-400 mt-2 
+    @apply bg-amber-300 text-slate-800 font-semibold rounded border-none px-2 py-1 mr-2 hover:bg-amber-400 mt-2 disabled:bg-gray-400
 }
 .text-input-field{
     @apply rounded-lg text-slate-200 bg-slate-500 px-1.5 py-1 w-48 sm:w-80 placeholder-slate-300 placeholder-opacity-90

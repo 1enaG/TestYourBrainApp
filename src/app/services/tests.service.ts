@@ -48,6 +48,9 @@ export class TestsService {
       .subscribe(response=>
         console.log(response)); 
   }
+  deleteTest(id: number){
+    return this.http.delete(this.testsUrl + '/' + id);
+  }
 
   updateTest(test: Test){
     //test.id = 8; 

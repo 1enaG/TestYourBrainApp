@@ -25,6 +25,14 @@ export class DashboardComponent implements OnInit {
       }
       );
   }
+  deleteTest(test: DashboardTest){
+    this.service.deleteTest(test.id) //on delete completed, remove from the array in component!
+      .subscribe(response => {
+        let index = this.tests.indexOf(test);
+        this.tests.splice(index, 1); 
+      });
+
+  }
 
 
   //helper function (for now)

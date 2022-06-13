@@ -8,10 +8,12 @@ import { Answer, Question, Test } from '../entities/test.model';
   providedIn: 'root'
 })
 export class UtilService {
+  
+  constructor(private service: TestsService, private fb: FormBuilder) {  
+  }
+
   // this service builds, fills with data (from test service) and returns a form for editing a test
 
-  constructor(private service: TestsService, private fb: FormBuilder) { 
-  }
 
   // for CREATE test: 
   getEmptyTestForm(){
@@ -31,9 +33,9 @@ export class UtilService {
 
  
   // for EDIT test: 
-  getTestForm(){
-    this.service.getTest(4).subscribe(response =>console.log(response)); 
-    return this.service.getTest(4).pipe(
+  getTestForm(testId: number){
+    this.service.getTest(testId).subscribe(response =>console.log(response)); 
+    return this.service.getTest(testId).pipe(
       map((response: any)=>this.fb.group({
         id: response.id,
         caption: response.caption,

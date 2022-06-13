@@ -9,6 +9,7 @@ import { PasswordValidators } from './password.validators';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  //isSpecial = true; 
   passwordForm: FormGroup; 
 
   // dependency injection: 

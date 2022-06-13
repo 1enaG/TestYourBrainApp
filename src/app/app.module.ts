@@ -45,6 +45,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { TestCountComponent } from './test-count/test-count.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DevApiComponent } from './dev-api/dev-api.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     QuestionComponent,
     EditComponent,
     UserDetailsComponent,
-    TestCountComponent
+    TestCountComponent,
+    DevApiComponent
   ],
   imports: [
     BrowserModule,

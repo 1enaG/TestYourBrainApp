@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { TestsService } from '../services/tests.service';
 import { SCROLL_THROTTLE_MS } from '@angular/material/tooltip';
 import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConditionalExpr } from '@angular/compiler';
 
 
 enum QuestionType {
@@ -28,7 +30,11 @@ export class EditComponent implements OnInit {
 
   eQuestionType = QuestionType; // enum 
   
-  constructor(private readonly util: UtilService, private service: TestsService, private fb: FormBuilder) {
+  constructor(private readonly util: UtilService, 
+              private service: TestsService, 
+              private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router) {
     // this.testForm$.subscribe(
     //   response => {
     //     this.testForm = response; 
@@ -36,9 +42,16 @@ export class EditComponent implements OnInit {
     // );
   }
   ngOnInit(): void {
-    this.util.getTestForm().subscribe(
-      testForm => this.testForm = testForm 
-    );
+    this.route.paramMap
+      .subscribe(params=>{
+          let testId =  +params.get('testId')!;
+          console.log(testId); 
+          //retrieve test data:      
+          this.util.getTestForm(testId).subscribe(
+            testForm => this.testForm = testForm 
+          );
+      })
+    
   }
   get questions(){
     return this.testForm.get('questions') as FormArray; 
@@ -110,7 +123,8 @@ export class EditComponent implements OnInit {
     }
     console.log(this.testForm.getRawValue()); 
     //this.service.addTest(this.testForm.getRawValue()); 
-    this.service.updateTest(this.testForm.getRawValue()); 
+    this.service.updateTest(this.testForm.getRawValue()) 
+    this.router.navigate(['/dashboard-component']); 
       // .subscribe(():void =>{
       //   alert("Saved!"); 
       // })
