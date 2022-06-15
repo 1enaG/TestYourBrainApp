@@ -23,14 +23,14 @@
     <div class="md:flex-none"> <!--src="icon" 
     -->
         <img class="object-cover h-48 w-48 rounded-lg mr-2"
-        
-        src="https://www.verywellhealth.com/thmb/AN4Z27FMJn5lcC421bogmAPOi0c=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/fresh-grapefruit-on-chopping-board-1266067263-73c505565bed40ef8524f463e4fbea5f.jpg"
-        alt="Test cover image">
+            [src]="icon ? icon.value : 'https://www.rd.com/wp-content/uploads/2018/01/00_Monogamous-Animals-That-Mate-for-Life_140616592_Anton_Ivanov_FT.jpg'"
+
+            alt="Test cover image">
     </div>  
 </div>
 <label class="col-start-2 row-start-2 text-lg">Change Image</label>
 <br>
-<input type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-4 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+<input #fileInput (change)="OnChange(fileInput)" type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-4 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
 <div class="py-2"> <!-- horizontal line-->
     <div class="w-full border-t border-slate-500"></div>
 </div>
@@ -65,7 +65,7 @@
             <div formArrayName="answers">
                 <div *ngFor="let answer of getAnswers(qIdx).controls; let ansIdx = index"
                 [formGroupName]="ansIdx">
-                    <input formControlName="right" checked="right" type="checkbox" class="h-4 w-4 mr-2">
+                    <input matTooltip="Select correct answer!" formControlName="right" checked="right" type="checkbox" class="h-4 w-4 mr-2">
 
                     <!--formControlName="{{optIdx}}"-->
                     <input formControlName="text" type="text"  class="bg-slate-700 border-b w-1/2 mt-1 border-amber-300 active:outline-none focus:outline-none" placeholder="Option1">

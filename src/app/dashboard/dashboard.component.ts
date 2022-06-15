@@ -2,6 +2,7 @@ import { TestsService } from './../services/tests.service';
 import { Component, OnInit } from '@angular/core';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { RawTest } from '../entities/raw-test.interface';
+import { Test } from '../entities/test.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   faDelete = faTrash; 
 
   tests: DashboardTest[] = []; 
-  rawTests: RawTest[] = []; 
+  rawTests: Test[] = []; 
+
 
   constructor(private service: TestsService) { }
 

@@ -21,7 +21,7 @@
         <!--NAME-->
         <div class="basis-5/12 m-2">
             <!-- <p>{{ t.name }}</p> -->
-            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            <test-details [name]="t.caption" [subject]="t.subject" [imgURL]="t.icon">
             </test-details>
         </div>
       
@@ -32,7 +32,7 @@
 
         <!--ACTION-->
         <div class="basis-3/12 m-2 flex items-center justify-center">
-            <button class="border-lime-400 border-2 rounded-lg font-semibold text-lg text-lime-400 px-5 hover:bg-slate-600/70">
+            <button [routerLink]="['/pass-component', t.id]" class="border-lime-400 border-2 rounded-lg font-semibold text-lg text-lime-400 px-5 hover:bg-slate-600/70">
                 Pass
             </button>
         </div>

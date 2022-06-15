@@ -46,6 +46,9 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { TestCountComponent } from './test-count/test-count.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DevApiComponent } from './dev-api/dev-api.component';
+import { PassComponent } from './pass/pass.component';
+import { TestingResultComponent } from './testing-result/testing-result.component';
+import { ReportGeneratorComponent } from './report-generator/report-generator.component';
 
 
 @NgModule({
@@ -74,7 +77,10 @@ import { DevApiComponent } from './dev-api/dev-api.component';
     EditComponent,
     UserDetailsComponent,
     TestCountComponent,
-    DevApiComponent
+    DevApiComponent,
+    PassComponent,
+    TestingResultComponent,
+    ReportGeneratorComponent
   ],
   imports: [
     BrowserModule,

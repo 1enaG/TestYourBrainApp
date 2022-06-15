@@ -1,5 +1,6 @@
 <!--AVG SCORE-->
-<div  class="score-outer-circle" [class]="getColorClass(scoreValue)"> <!-- [class]="getColorClass(t.avgScore)" -->
+<!-- add another input property - scale! And enable class binding to it-->
+<div  class="score-outer-circle" [class.scale-[5]]="isScaledUp"  [class]="getColorClass(scoreValue)"> <!-- [class]="getColorClass(t.avgScore)" -->
     <div class="score-inner-circle">
         {{ scoreValue }}
         <!-- <ng-content select=".scoreValue"></ng-content> -->

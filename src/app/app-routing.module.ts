@@ -1,3 +1,5 @@
+import { ReportGeneratorComponent } from './report-generator/report-generator.component';
+import { PassComponent } from './pass/pass.component';
 import { DevApiComponent } from './dev-api/dev-api.component';
 import { EditComponent } from './edit/edit.component';
 import { PostsComponent } from './posts/posts.component';
@@ -16,6 +18,7 @@ import { PerformanceComponent } from './performance/performance.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TestingResultComponent } from './testing-result/testing-result.component';
 
 const routes: Routes = [
   { path: 'registration-component', component: RegistrationComponent },
@@ -35,6 +38,10 @@ const routes: Routes = [
 
   { path: 'edit-component/:testId', component: EditComponent }, 
   { path: 'dev-api-component', component: DevApiComponent }, 
+  { path: 'pass-component/:testId', component: PassComponent }, 
+  { path: 'testing-result-component/:score', component: TestingResultComponent }, 
+  { path: 'report-generator-component', component: ReportGeneratorComponent }, 
+  
   
 
 ];

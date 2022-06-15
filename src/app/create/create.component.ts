@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms'; 
 import { TestsService } from '../services/tests.service';
 import { UtilService } from '../services/util.service';
+import { ImageService } from '../services/image.service';
 
 enum QuestionType {
   Radio = "Multiple Choice: Single Answer",
@@ -23,9 +25,15 @@ faCopy = faCopy;
 faUploadImage = faImage; 
 faXmark = faXmark; 
 
+defaultIcon : string =  'https://img.freepik.com/free-vector/job-exam-test-vector-illustration_138676-243.jpg?w=2000'; 
+testIcon : string = ''; 
+
 eQuestionType = QuestionType; // enum 
 
-constructor(private readonly util: UtilService, private service: TestsService, private fb: FormBuilder) {
+constructor(private readonly util: UtilService, 
+  private service: TestsService, 
+  private imgService: ImageService,
+  private router: Router) {
   // this.testForm$.subscribe(
   //   response => {
   //     this.testForm = response; 
@@ -35,6 +43,9 @@ constructor(private readonly util: UtilService, private service: TestsService, p
 ngOnInit(): void {
   // get EMPTY TEST FORM: 
   this.testForm = this.util.getEmptyTestForm(); // no need to subscribe bc we are not calling the server
+  this.testForm.patchValue({ 
+    icon: this.defaultIcon // set default icon on init
+  });
 }
 get questions(){
   return this.testForm.get('questions') as FormArray; 
@@ -50,6 +61,21 @@ getAnswers(qIdx: number){
 addQuestion(){
   let newId = this.assignQuestionId(); 
   this.questions.push(this.util.generateEmptyQuestionForm(newId)); 
+}
+
+OnChange(fileInput: HTMLInputElement){
+  if(!fileInput.files) return; 
+  let imageFile:File = fileInput.files[0];  
+  //console.log(imageFile); 
+  this.imgService.toBase64(imageFile)
+    .subscribe((data)=>{
+      //console.log(data); 
+      this.testIcon = data; 
+      this.testForm.patchValue({ 
+        icon: this.testIcon
+      }); 
+    }); 
+
 }
 
 
@@ -105,9 +131,8 @@ save(){
     return;
   }
   console.log(this.testForm.getRawValue()); 
-  this.service.addTest(this.testForm.getRawValue()); 
-  
-
+  this.service.addTest(this.testForm.getRawValue());
+  this.router.navigate(['/dashboard-component']); 
 }
 
 

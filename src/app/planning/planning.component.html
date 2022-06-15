@@ -21,10 +21,10 @@
         <div class="basis-2/12 table-row-elem flex flex-col  items-center">
         
 
-            <mat-form-field color="accent" class="font-sans"> <!-- appearance="fill" -->
-                <mat-label class="text-slate-200 font-sans" >Status</mat-label>
-                <mat-select [(ngModel)]="t.status" class="text-slate-200">
-                    <mat-option *ngFor="let status of statusOptions" class="font-sans bg-slate-700 text-slate-200 active:bg-lime-400"
+            <mat-form-field color="accent" > <!-- appearance="fill" -->
+                <mat-label  >Status</mat-label>
+                <mat-select [(ngModel)]="t.status">
+                    <mat-option *ngFor="let status of statusOptions" 
                         [value] = "status" >
                         {{ status }}
                     </mat-option>
@@ -35,10 +35,10 @@
         <div class="basis-6/12 table-row-elem flex  flex-col items-center justify-center ">
             <div>
                 <mat-form-field color="accent" appearance="fill">
-                    <mat-label class="text-slate-200 font-sans">Start date</mat-label>
+                    <mat-label >Start date</mat-label>
                     <input matInput [matDatepicker]="picker1">
                     <!-- <mat-hint class="text-slate-300">MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle class="text-slate-200 hover:text-white" matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
     
@@ -46,11 +46,11 @@
        
             <div>
                 <mat-form-field color="accent" appearance="fill">
-                    <mat-label class="text-slate-200 font-sans">End date</mat-label>
+                    <mat-label >End date</mat-label>
                     <input matInput [matDatepicker]="picker2">
                     <!-- <mat-hint class="text-slate-300">MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle class="text-slate-200 hover:text-white" matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker class="bg-slate-400" #picker2></mat-datepicker>
+                    <mat-datepicker-toggle  matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker  #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
             

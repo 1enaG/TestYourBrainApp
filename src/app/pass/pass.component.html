@@ -1,0 +1,57 @@
+<form  class="accent-amber-300"
+
+(ngSubmit)="submitAnswers()"> <!--*ngIf="testForm$ | async as form"  -->
+
+<!--Test Name, Subject, Image, Change Image button-->
+<div class="md:flex">
+    <div class="md:order-2 md:flex-none lg:w-1/2">
+        <div class="text-xl font-semibold"> {{ test.caption}} </div>
+        <div class="text-lg font-semibold"> {{ test.subject }} </div>
+
+    </div>
+    <!-- image-->
+    <div class="md:flex-none"> <!--src="icon" -->
+        <img class="object-cover h-32 w-32 rounded-lg mr-2"  
+        [src]="test.icon"
+        alt="Test cover image">
+    </div>  
+</div>
+<div class="py-2"> <!-- horizontal line-->
+    <div class="w-full border-t border-slate-500"></div>
+</div>
+
+<!-- Questions -->
+<div *ngFor="let q of questions; let qIdx = index">
+    <div >
+        <div class="md:flex md:justify-start gap-5">
+                <!-- Question Text -->
+                <div>{{ qIdx+1 }}.</div>
+                <div>{{ q.caption }}</div>
+        </div>
+        <!-- Optional Image--> <!-- display IF there is an image-->
+        <div *ngIf="false" class="md:flex-none"> <!-- *ngIf="q.icon"-->
+            <img class="object-cover max-h-32 max-w-fit rounded-lg mr-2"  
+            src="https://www.howtogeek.com/wp-content/uploads/2021/05/whale.jpg?height=200p&trim=2,2,2,2&crop=16:9"
+            alt="Test cover image">
+        </div>
+        <!--Answers-->
+        <div *ngFor="let ans of q.answers">
+            <!--Option-->
+            <div class="flex flex-row items-center">
+                <input (click)="updateAnswer(q, ans)" type="checkbox" class="h-4 w-4 mr-2"> <!-- checkbox for choosing answers -->
+                <p>{{ ans.text }}</p>
+            </div>
+        </div> 
+        <!-- end of answers-->
+
+
+        <div class="py-2"> <!-- horizontal line-->
+            <div class="w-full border-t border-slate-500"></div>
+        </div>
+    </div> <!--end of question-->
+</div><!--End of questions-->
+<div class="flex w-full place-content-end">
+    <button type="submit"  class="button-yellow">Submit</button>
+</div>
+
+</form>

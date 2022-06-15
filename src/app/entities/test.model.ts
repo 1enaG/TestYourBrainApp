@@ -19,5 +19,15 @@ export interface Answer{
     id: number;
     text: string; 
     right: boolean; 
+    isChecked: boolean;  // added this 
+}
 
+export interface User{
+    id: number;  
+    login: string; 
+    password: string; 
+    firstName: string; 
+    lastName: string;
+    country: string; 
+    avatar: string; 
 }

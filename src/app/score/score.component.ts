@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ScoreComponent implements OnInit {
 
   @Input() scoreValue: number = 0; 
+  @Input() isScaledUp: boolean = false; 
   constructor() { }
 
   ngOnInit(): void {

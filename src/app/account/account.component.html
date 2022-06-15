@@ -1,66 +1,67 @@
 <page-title>
     <ng-container class="title-text">Account</ng-container>
 </page-title>
-
-<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2  bg-slate-700 gap-2 sm:p-3 grid-flow-row">
-    <div class="bg-slate-700 col-start-1 col-end-2 lg:p-3 md:p-2 rounded-lg  flex justify-center"> <!-- 01 Avatar-->
-        <img class="object-cover h-40 w-40 md:w-32 md:h-32 lg:w-48 lg:h-48  border-4 border-lime-300 rounded-full m-3"
-        
-        [src]="avatar"
-        alt="Avatar" />
-    </div>
-
-    <div class="bg-slate-700 order-first md:order-2 rounded-lg  md:row-start-1 md:col-start-2 md:col-end-4 "><!-- 02 Name-->
-        <p class="text-lg sm:text-2xl font-semibold">ExtremelyLongUsername</p>
-        <!-- <button class="button-yellow">Country \/</button> -->
-        
-        <mat-form-field class="font-sans"> <!-- appearance="fill" -->
-            <mat-label class="text-slate-200" >Country</mat-label>
-
-            <mat-select class="text-slate-200">
-                <mat-option>
-                    --
-                </mat-option>
-                <mat-option *ngFor="let country of countries" 
-                    [value] = "country" >
-                    {{ country }}
-                </mat-option>
-            </mat-select>
+<form>
+    <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2  bg-slate-700 gap-2 sm:p-3 grid-flow-row">
+        <input id="id" type="hidden">
+        <div class="bg-slate-700 col-start-1 col-end-2 lg:p-3 md:p-2 rounded-lg  flex justify-center"> <!-- 01 Avatar-->
+            <img class="object-cover h-40 w-40 md:w-32 md:h-32 lg:w-48 lg:h-48  border-4 border-lime-300 rounded-full m-3"
+            [src]="avatar == '' ? user.avatar : avatar"
+            alt="Avatar" />
+        </div>
     
-        </mat-form-field>
-    </div>
-
-       
-         
-    <div class="bg-slate-700 rounded-lg col-start-1 md:col-end-4 lg:col-end-2 "> <!--04 - Change avatar (upload picture) -->
-        <label class="col-start-2 row-start-2 text-lg">Change Avatar</label>
-        <br>
-        <input #fileInput (change)="OnChange(fileInput)" type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-8 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
-        
-        <br>
-        <a routerLink="/change-password-component" routerLinkActive="active" class="link-yellow text-lg">Change password</a>
+        <div class="bg-slate-700 order-first md:order-2 rounded-lg  md:row-start-1 md:col-start-2 md:col-end-4 "><!-- 02 Name-->
+            <p class="text-lg sm:text-2xl font-semibold">{{ user.login }}</p>
+            <!-- <button class="button-yellow">Country \/</button> -->
+            
+            <mat-form-field class="font-sans"> <!-- appearance="fill" -->
+                <mat-label class="text-slate-200" >Country</mat-label>
     
+                <mat-select class="text-slate-200" [(value)]="user.country">
+                    <mat-option>
+                        --
+                    </mat-option>
+                    <mat-option *ngFor="let country of countries" 
+                        [value] = "country" >
+                        {{ country }}
+                    </mat-option>
+                </mat-select>
+        
+            </mat-form-field>
+        </div>
+    
+           
+             
+        <div class="bg-slate-700 rounded-lg col-start-1 md:col-end-4 lg:col-end-2 "> <!--04 - Change avatar (upload picture) -->
+            <label class="col-start-2 row-start-2 text-lg">Change Avatar</label>
+            <br>
+            <input #fileInput (change)="OnChange(fileInput)" type="file" class=" col-start-1 md:col-start-2 md:row-start-2 lg:col-start-2  mb-8 file:bg-amber-300 file:text-slate-800 file:font-semibold file:rounded file:border-none file:px-2 file:py-1 file:mr-2 hover:file:bg-amber-400 file:shadow-md ffile:shadow-amber-300">
+            
+            <br>
+            <a routerLink="/change-password-component" routerLinkActive="active" class="link-yellow text-lg">Change password</a>
+        
+        </div>
+        <div class="bg-slate-700 rounded-lg   col-start-1 md:col-start-1 lg:col-start-2 md:col-end-4 lg:col-end-3"><!--05 - First Name and Last Name --> 
+            <label for="firstName" class="text-lg">First Name</label> 
+            <br>
+            <input [value]="user.firstName" id="firstName" type="text" class="text-input-field" placeholder="First Name">
+            <br>
+    
+            <label for="lastName" class="text-lg">Last Name</label> 
+            <br>
+            <input [value]="user.lastName" id="lastName" type="text" class="text-input-field" placeholder="Last Name">
+            <br>
+            <div class="flex flex-row justify-end pt-4">
+                <button (click)="onSubmit()" class="button-yellow">Update</button>
+            </div>
+        </div>
     </div>
-    <div class="bg-slate-700 rounded-lg   col-start-1 md:col-start-1 lg:col-start-2 md:col-end-4"><!--05 - First Name and Last Name --> 
-        <label for="firstName" class="text-lg">First Name</label> 
-        <br>
-        <input id="firstName" type="text" class="text-input-field" placeholder="First Name">
-        <br>
-
-        <label for="lastName" class="text-lg">Last Name</label> 
-        <br>
-        <input id="lastName" type="text" class="text-input-field" placeholder="Last Name">
-        <br>
-    </div>
-  
-
-    <!--I feel like it would make more sense to be able to change the password in a separate view-->
-    <!-- <label for="oldPassword">Old password</label>
-    <input type="password" class="col-start-1">
-    <input type="password" class="col-start-1"> -->
-
-</div>
-
+</form>
+   
+        <!--I feel like it would make more sense to be able to change the password in a separate view-->
+        <!-- <label for="oldPassword">Old password</label>
+        <input type="password" class="col-start-1">
+        <input type="password" class="col-start-1"> -->
 <!--
     GRID EXTRAS 
 <div class="grid grid-cols-4 grid-rows-3 bg-violet-600 gap-2 p-3 grid-flow-row">

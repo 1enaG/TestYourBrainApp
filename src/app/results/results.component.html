@@ -7,3 +7,32 @@
             class="bg-slate-500 rounded-xl px-2 py-1" >
     </ng-container>
 </page-title>
+
+<div class="flex flex-col  bg-slate-700">
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1">
+        <div class="basis-5/12 table-heading-elem">Test Name</div>
+        <div class="basis-4/12 table-heading-elem flex justify-center items-center"> <p>Date</p></div>
+        <div class="basis-3/12 table-heading-elem flex justify-center items-center"><p>Score</p></div>
+    </div>
+
+    <!--Test 1-->
+    <div class="flex flex-row  basis-1" *ngFor="let t of tests">
+        <!--NAME-->
+        <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-start m-2">
+            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            </test-details>
+        </div>
+      
+        <!--COUNT-->
+        
+        <div class="basis-4/12 table-row-elem flex items-center justify-center m-2">
+            <p>{{ t.date }}</p>
+        </div>
+
+        <!--AVG SCORE-->
+        <div class="basis-3/12 table-row-elem  flex items-center justify-center m-2">
+            <score [scoreValue] ="t.score"></score>
+        </div>
+
+</div>

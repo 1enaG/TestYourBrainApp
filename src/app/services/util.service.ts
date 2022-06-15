@@ -14,6 +14,7 @@ export class UtilService {
 
   // this service builds, fills with data (from test service) and returns a form for editing a test
 
+  defaultIcon : string =  'https://img.freepik.com/free-vector/job-exam-test-vector-illustration_138676-243.jpg?w=2000'; 
 
   // for CREATE test: 
   getEmptyTestForm(){
@@ -21,7 +22,7 @@ export class UtilService {
       id: 0, //or smth else? EMPTY and then we get an ID in return? 
       caption: "",
       subject: "",
-      icon: "",
+      icon: "", //"https://img.freepik.com/free-vector/job-exam-test-vector-illustration_138676-243.jpg?w=2000",
       open: false,  
       questions: this.fb.array([
          //generate a form for each question and add here

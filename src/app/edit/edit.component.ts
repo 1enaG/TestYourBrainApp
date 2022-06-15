@@ -7,6 +7,7 @@ import { SCROLL_THROTTLE_MS } from '@angular/material/tooltip';
 import {  faTrash, faCopy, faImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConditionalExpr } from '@angular/compiler';
+import { ImageService } from '../services/image.service';
 
 
 enum QuestionType {
@@ -27,13 +28,15 @@ export class EditComponent implements OnInit {
   faCopy = faCopy; 
   faUploadImage = faImage; 
   faXmark = faXmark; 
+  
+  testIcon : string = ''; 
 
   eQuestionType = QuestionType; // enum 
   
   constructor(private readonly util: UtilService, 
               private service: TestsService, 
-              private fb: FormBuilder,
               private route: ActivatedRoute,
+              private imgService: ImageService, 
               private router: Router) {
     // this.testForm$.subscribe(
     //   response => {
@@ -67,6 +70,20 @@ export class EditComponent implements OnInit {
   addQuestion(){
     let newId = this.assignQuestionId(); 
     this.questions.push(this.util.generateEmptyQuestionForm(newId)); 
+  }
+  OnChange(fileInput: HTMLInputElement){
+    if(!fileInput.files) return; 
+    let imageFile:File = fileInput.files[0];  
+    //console.log(imageFile); 
+    this.imgService.toBase64(imageFile)
+      .subscribe((data)=>{
+        //console.log(data); 
+        this.testIcon = data; 
+        this.testForm.patchValue({ 
+          icon: this.testIcon
+        }); 
+      }); 
+
   }
 
   
