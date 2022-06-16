@@ -6,16 +6,16 @@
 <div id="leftDiv" class="flex flex-col lg:flex-row lg:justify-between">
     <div class="flex flex-wrap">
         <!--Use ngFor to display all tests and bind the circle style to their respective colors!-->
-        <div *ngFor="let t of tests"
+        <div *ngFor="let t of decoratedTests"
             class="flex flex-row text-sm bg-slate-600 rounded-lg p-1 m-1 hover:bg-slate-600"
             [class.bg-slate-600]="t.isSelected"
             (click)="t.isSelected = !t.isSelected; onTestClick(t)"
             > <!-- Toggle isSelected field and redraw the chart--> <!--test id is the reference to the div-->
             <img class="object-cover h-10 w-10  rounded-lg mr-2"
-                src={{t.imgURL}}
+                src={{t.icon}}
                 alt="Test Cover Image" />
             <div class="flex flex-col">
-                <p class="font-semibold">{{ t.name }}</p>
+                <p class="font-semibold">{{ t.caption }}</p>
                 <p>{{ t.subject }}</p>
             </div>
             <!-- We have to bind the color of the graph line to the color of the circle! (from ts file)-->

@@ -7,32 +7,43 @@
     <!-- Heading -->
     <div class="flex flex-row  basis-1">
         <div class="basis-4/12 table-heading-elem">Test Name</div>
-        <div class="basis-2/12 table-heading-elem flex justify-center items-center"> <p>Status</p></div>
-        <div class="basis-6/12 table-heading-elem flex justify-center items-center"><p>Available</p></div>
+        <div class="basis-3/12 table-heading-elem flex justify-center items-center"> <p>Status</p></div>
+        <div class="basis-5/12 table-heading-elem flex justify-center items-center"><p>Available</p></div>
     </div>
 
     <!--Test Card-->
     <div *ngFor="let t of tests" class="flex flex-row  basis-1">
         <div class="basis-4/12 table-row-elem flex flex-col sm:flex-row justify-between">
-            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            <test-details [name]="t.caption" [subject]="t.subject" [imgURL]="t.icon">
             </test-details>
         </div>
         
-        <div class="basis-2/12 table-row-elem flex flex-col  items-center">
+        <div class="basis-3/12 table-row-elem flex flex-col  items-center">
         
 
             <mat-form-field color="accent" > <!-- appearance="fill" -->
                 <mat-label  >Status</mat-label>
-                <mat-select [(ngModel)]="t.status">
-                    <mat-option *ngFor="let status of statusOptions" 
-                        [value] = "status" >
-                        {{ status }}
+                <mat-select [(ngModel)]="t.open">
+                    <mat-option
+                        [value] = "true" >
+                        Public
+                    </mat-option>
+                    <mat-option
+                    [value] = "false" >
+                        Private
                     </mat-option>
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field appearance="fill" *ngIf="!t.open" color="accent">
+                <mat-label>Available to</mat-label>
+                <mat-select  multiple> <!--[formControl]="toppings"-->
+                  <mat-option *ngFor="let user of users" [value]="user">{{user.login}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              
         </div>
-        <div class="basis-6/12 table-row-elem flex  flex-col items-center justify-center ">
+        <div class="basis-5/12 table-row-elem flex  flex-col items-end justify-center ">
             <div>
                 <mat-form-field color="accent" appearance="fill">
                     <mat-label >Start date</mat-label>

@@ -141,7 +141,15 @@ export class EditComponent implements OnInit {
     console.log(this.testForm.getRawValue()); 
     //this.service.addTest(this.testForm.getRawValue()); 
     this.service.updateTest(this.testForm.getRawValue()) 
-    this.router.navigate(['/dashboard-component']); 
+    //this.router.navigate(['/dashboard-component']); 
+    this.router.navigate(['/dashboard-component'])
+      .then(() => {
+        window.location.reload();
+      });
+    // this.router.navigate(['/'])
+    //   .then(() => {
+    //     this.router.navigate(['/dashboard-component'])
+    //   });
       // .subscribe(():void =>{
       //   alert("Saved!"); 
       // })
