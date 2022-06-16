@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'side-menu',
@@ -9,7 +10,12 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 export class SideMenuComponent implements OnInit {
 
   faUser = faCircleUser; 
-  constructor() { }
+
+  constructor(private authService: AuthService) { }
+
+  get isLoggedIn(){
+    return this.authService.isLoggedIn(); 
+  }
 
   ngOnInit(): void {
   }

@@ -11,7 +11,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateComponent } from './create/create.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
 import { PlanningComponent } from './planning/planning.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for 2-way binding 
@@ -60,7 +59,6 @@ import { ReportGeneratorComponent } from './report-generator/report-generator.co
     AccountComponent,
     DashboardComponent,
     CreateComponent,
-    DropdownComponent,
     PlanningComponent,
     PerformanceComponent,
     ChangePasswordComponent,

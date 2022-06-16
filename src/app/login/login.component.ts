@@ -1,5 +1,8 @@
+import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'; 
+import { NavigationEnd, Router } from '@angular/router';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'login',
@@ -7,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+    faHeart = faHeart; 
     loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required), 
@@ -18,16 +23,26 @@ export class LoginComponent implements OnInit {
   get password(){
     return this.loginForm.get("password"); 
   }
-  constructor() { }
+  constructor(private authService :AuthService, 
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  login(){
-    let isValid = false; // TODO: call the server here
-    if(!isValid){
-      this.loginForm.setErrors({ invalidLogin: true })
+  login(credentials: any){
+    // let isValid = false; // TODO: call the server here
+    // if(!isValid){
+    //   this.loginForm.setErrors({ invalidLogin: true })
+    // }
+    let isValid = this.authService.authenticate(credentials); //actually should do it through SUBSCRIBE!
+    if(isValid){
+      this.router.navigate(["/dashboard-component"]); //works 
+    }else{
+      this.loginForm.setErrors({ invalidLogin: true }); 
     }
+
+       
+
   }
 
 }

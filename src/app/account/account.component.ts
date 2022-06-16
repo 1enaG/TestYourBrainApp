@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { ImageService } from './../services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
@@ -18,7 +20,9 @@ export class AccountComponent implements OnInit {
 
   avatar = ''; //"https://www.pngitem.com/pimgs/m/78-786293_1240-x-1240-0-avatar-profile-icon-png.png";  
   constructor(private imgService: ImageService,
-              private service: UsersService) 
+              private service: UsersService, 
+              private authService: AuthService, 
+              private router: Router) 
   { 
       this.service.getUser(this.userId)
         .subscribe(response => {
@@ -30,6 +34,10 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout(){
+    this.authService.logout(); 
+    this.router.navigate(["/login-component"]); 
+  }
   OnChange(fileInput : HTMLInputElement){
     if (!fileInput.files) return; //make sure it's not null! 
 

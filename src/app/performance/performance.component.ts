@@ -221,7 +221,7 @@ export class PerformanceComponent implements OnInit {
     // get avg scores from server 
     tests.forEach(t => {
       this.dates.forEach(date => {
-        t.avgScores.push(this.randomIntFromInterval(60, 90)); 
+        t.avgScores.push(this.randomIntFromInterval(50, 95)); 
         }); 
       });
     tests[0].avgScores[0]=0; 

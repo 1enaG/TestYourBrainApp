@@ -61,7 +61,7 @@
     </div>
     
     
-    <div class="menu-section outline-red-400">
+    <div class="menu-section outline-red-400 ">
         <h3 class="section-title text-red-400">For Developers</h3>
         <ul class="list-items decoration-red-500">
             <li class="hover-red">
@@ -72,19 +72,31 @@
         </ul>
     </div>
     
-    <a routerLink="/registration-component" routerLinkActive="active" class="underline ml-3">Register</a>
-    <a routerLink="/login-component" routerLinkActive="active" class="underline ml-3">Login</a>
-    <a routerLink="/posts-component" routerLinkActive="active" class="underline ml-3  text-blue-500">Posts</a>
+    
+    <!-- <a routerLink="/posts-component" routerLinkActive="active" class="underline ml-3  text-blue-500">Posts</a> -->
 
     
     
-    <div class="py-2"> <!-- horizontal line-->
+    <div class="py-2 mt-8"> <!-- horizontal line-->
         <div class="w-full border-t border-slate-900"></div>
     </div>
     <!-- <div class="flex flex-1 flex-row w-full bg-lime-300"> -->
-        <div class="pb-2 pl-2 flex items-center hover:text-white h-10 md:fixed md:bottom-0 md:left-0 flex-1">  
-            <fa-icon [icon]="faUser" class="fa-2x"></fa-icon>
-            <a routerLink="/account-component" routerLinkActive="active" class="text-xl ml-3">Account</a>
+        <div class="flex flex-row justify-between">
+            <a *ngIf="!isLoggedIn" routerLink="/login-component" routerLinkActive="active" class="underline ml-3 text-lg ml-8 hover:text-white">
+                Login
+            </a>
+            <a *ngIf="!isLoggedIn" routerLink="/registration-component" routerLinkActive="active" class="underline ml-3 text-lg mr-8 hover:text-white"> <!-- outline outline-1 px-3 rounded-->
+                Register
+            </a>
+        </div>
+       
+
+        <div *ngIf="isLoggedIn" class="pb-2 pl-2 flex items-center hover:text-white h-10 md:fixed md:bottom-0 md:left-0 flex-1">  
+            <div><fa-icon [icon]="faUser" class="fa-2x"></fa-icon>
+                <a routerLink="/account-component" routerLinkActive="active" class="text-xl ml-3">Account</a>
+            </div>
+            
+            
         </div>
     <!-- </div> -->
    

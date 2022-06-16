@@ -3,8 +3,11 @@
 </page-title>
 
 <div class="justify-center">
-    <form action="" [formGroup]="loginForm" class="accent-amber-300" (ngSubmit)="login()">
-        <div *ngIf="loginForm.errors" class="text-red-300">The email or password is invalid</div>
+    <form action="" [formGroup]="loginForm" #f="ngForm" class="accent-amber-300" (ngSubmit)="login(f.value)">
+        <div class="text-md mb-3">Please log in to use all features of the platform!
+            <fa-icon [icon]="faHeart" class="fa-sm"></fa-icon>
+        </div>
+        <div *ngIf="loginForm.errors" class="text-red-300">The email or password is invalid. Please try again</div>
         <label for="email">Email address</label> 
         <br>
         <input formControlName="email" id="email" type="text" class="text-input-field" placeholder="Email address">

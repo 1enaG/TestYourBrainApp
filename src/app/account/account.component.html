@@ -1,5 +1,11 @@
 <page-title>
     <ng-container class="title-text">Account</ng-container>
+   
+    <ng-container class="additional">
+        <button (click)="logout()" class="outline outline-2 text-center text-semibold px-3 rounded ml-3 text-md hover:text-white">
+            Logout
+        </button> 
+    </ng-container>
 </page-title>
 <form>
     <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2  bg-slate-700 gap-2 sm:p-3 grid-flow-row">
