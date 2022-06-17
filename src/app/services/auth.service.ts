@@ -28,7 +28,7 @@ export class AuthService {
     if(credentials.email =="olenagroza@gmail.com" && credentials.password == "123456"){
       localStorage.setItem("token", "true"); 
       return true; 
-    }
+    } // we don't know the user id yet, so i cannot easily check in the db (only if i look through all the entries, i guess)
       
     else {
       return false; 

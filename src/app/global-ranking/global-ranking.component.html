@@ -46,15 +46,20 @@
         </div>
     </div>
     <!--Test 1-->
-    <div class="flex flex-row  basis-1 py-2" *ngFor="let t of tests | filter:testSearchText; let idx = index">
+    <div class="flex flex-row  basis-1 py-2" *ngFor="let t of dashboardTests | filter:testSearchText; let idx = index">
         <!--№-->
         <div class="basis-1/12 table-row-elem flex flex-col sm:flex-row justify-center items-center">
             {{ idx+1 }}
         </div>
         <!--Test name-->
         <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-between">
-            <test-details [name]="t.name" [subject]="t.subject" [imgURL]="t.imgURL">
+            <test-details [name]="t.caption" [subject]="t.subject" [imgURL]="t.icon">
             </test-details>
+            <div class="flex items-center">
+                <button [routerLink]="['/pass-component', t.id]" class="outline outline-2 text-center text-semibold px-5 rounded ml-3 text-md hover:text-white">
+                    Pass
+                </button> 
+            </div>
         </div>
       
         <!--Count-->
@@ -88,15 +93,15 @@
         </div>
     </div>
      <!--User 1-->
-     <div class="flex flex-row  basis-1 py-2" *ngFor="let u of users | filter:userSearchText; let idx = index">
+     <div class="flex flex-row  basis-1 py-2" *ngFor="let u of dashboardUsers | filter:userSearchText; let idx = index">
         <!--№-->
         <div class="basis-1/12 table-row-elem flex flex-col sm:flex-row justify-center items-center">
             {{ idx+1 }}
         </div>
         <!--Test name-->
         <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-between">
-            <user-details [username]="u.username" [firstName]="u.firstName" [lastName]="u.lastName"
-                [imgURL]="u.imgURL">
+            <user-details [username]="u.login" [firstName]="u.firstName" [lastName]="u.lastName"
+                [imgURL]="u.avatar">
             </user-details>
         </div>
       

@@ -32,15 +32,15 @@
             </div>
         </div>
         <!-- Users info-->
-        <div class="flex flex-row  basis-1 py-2" *ngFor="let u of users; let idx = index">
+        <div class="flex flex-row  basis-1 py-2" *ngFor="let u of reportUsers; let idx = index">
             <!--№-->
             <div class="basis-1/12 table-row-elem flex flex-col sm:flex-row justify-center items-center">
                 {{ idx+1 }}
             </div>
             <!--Test name-->
             <div class="basis-5/12 table-row-elem flex flex-col sm:flex-row justify-between">
-                <user-details [username]="u.username" [firstName]="u.firstName" [lastName]="u.lastName"
-                    [imgURL]="u.imgURL">
+                <user-details [username]="u.login" [firstName]="u.firstName" [lastName]="u.lastName"
+                    [imgURL]="u.avatar">
                 </user-details>
             </div>
           

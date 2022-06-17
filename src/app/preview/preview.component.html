@@ -1,3 +1,34 @@
 <page-title>
     <ng-container class="title-text">Preview</ng-container>
 </page-title>
+
+
+<div class="flex flex-col  bg-slate-700">
+    <!-- Heading -->
+    <div class="flex flex-row  basis-1 mx-3 font-semibold">
+        <div class="basis-6/12 table-heading-elem">Test Name</div>
+        <div class="basis-6/12 table-heading-elem flex justify-center items-center"><p>Action</p></div>
+    </div>
+
+    <!--Test 1-->
+    <div class="flex flex-row basis-1" *ngFor="let t of tests" > 
+        <!--NAME-->
+        <div class="basis-6/12 m-2">
+            <!-- <p>{{ t.name }}</p> -->
+            <test-details [name]="t.caption" [subject]="t.subject" [imgURL]="t.icon">
+            </test-details>
+        </div>
+      
+        
+
+        <!--ACTION-->
+        <div class="basis-6/12 m-2 flex items-center justify-center">
+            <button [routerLink]="['/pass-component', t.id]" class="outline outline-2 text-center text-semibold px-3 rounded ml-3 text-md hover:text-white">
+                Preview
+            </button>
+        </div>
+        
+        
+    </div>
+
+</div>
