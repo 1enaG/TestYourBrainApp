@@ -34,7 +34,7 @@ export class UtilService {
 
  
   // for EDIT test: 
-  getTestForm(testId: number){
+  getTestForm(testId: string){
     this.service.getTest(testId).subscribe(response =>console.log(response)); 
     return this.service.getTest(testId).pipe(
       map((response: any)=>this.fb.group({

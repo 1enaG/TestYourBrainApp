@@ -46,6 +46,7 @@ ngOnInit(): void {
   this.testForm.patchValue({ 
     icon: this.defaultIcon // set default icon on init
   });
+  this.service.createTest();
 }
 get questions(){
   return this.testForm.get('questions') as FormArray; 
@@ -130,8 +131,7 @@ save(){
     alert('Invalid input');
     return;
   }
-  console.log(this.testForm.getRawValue()); 
-  this.service.addTest(this.testForm.getRawValue());
+  this.service.updateTest(this.testForm.getRawValue());
   this.router.navigate(['/dashboard-component']); 
 }
 

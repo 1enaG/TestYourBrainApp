@@ -15,7 +15,7 @@ export class UsersService {
     return this.http.get<User[]>(this.usersUrl); 
   }
   // single user for Account page: 
-  getUser(id: number){
+  getUser(id: number){ 
     return this.http.get<User>(this.usersUrl + "/" + id); 
   }
   addUser(){

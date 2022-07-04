@@ -11,13 +11,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PassComponent implements OnInit {
 
   test!: Test; // or maybe check if it IS there in the template... 
-  testId: number = 4; //for now 
+  testId: string = ""; //for now 
   //testAnswers!: TestAnswer[]; 
 
   constructor(private service: TestsService, private router : Router, private route: ActivatedRoute) { 
       this.route.paramMap
       .subscribe(params=>{
-          this.testId =  +params.get('testId')!;
+          this.testId = params.get('testId')!;
           console.log(this.testId); 
           
       }); 

@@ -47,7 +47,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap
       .subscribe(params=>{
-          let testId =  +params.get('testId')!;
+          let testId = params.get('testId')!;
           console.log(testId); 
           //retrieve test data:      
           this.util.getTestForm(testId).subscribe(

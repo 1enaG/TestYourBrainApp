@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 //import { RawTest } from '../entities/raw-test.interface';
-import { Test } from '../entities/test.model';
+import { Test, Token } from '../entities/test.model';
+
 //import { Test } from '../entities/test.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestsService {
-  private testsUrl = "http://localhost:3000/tests"; //base URL 
+  private testsUrl = "https://localhost:7199/tests-management/"; //base URL 
+  protected headers;
+  private token: Token; 
+  private testExternalID: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.testExternalID = "";
+    this.token = JSON.parse(localStorage.getItem("token") || '{}');
+    this.headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.token.accessToken };
+  }
 
   getTests(){
-    //return this.http.get<Post>(this.postsUrl);
-    return this.http.get<Test[]>(this.testsUrl); 
+    return this.http.get<Test[]>(this.testsUrl + "tests/" + this.token.externalId, { headers: this.headers });
   }
-  getTest(id: number){
+  getTest(id: string){
     return this.http.get<Test>(this.testsUrl+"/"+id); 
   }
   // addPost(newPost: Post){ 
@@ -38,27 +45,25 @@ export class TestsService {
   //   .subscribe(response=>
   //     console.log(response)); 
   // }
-  addTest(test: Test){
-    //test.id = 8; 
-    // ! doesn't work without headers
-    const headers = { 'content-type': 'application/json'}  
-    const body=JSON.stringify(test);
-    console.log(body); 
-    this.http.post(this.testsUrl, body,{'headers':headers}) //TODO: move subscriptiont to create component! Display an alert!
-      .subscribe(response=>
-        console.log(response)); 
-  }
-  deleteTest(id: number){
-    return this.http.delete(this.testsUrl + '/' + id);
+
+  createTest() {
+    this.headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.token.accessToken };
+    this.http.post<Test>(this.testsUrl + "users/" + this.token.externalId + "/tests/", null, { headers: this.headers }) //TODO: move subscriptiont to create component! Display an alert!
+      .subscribe(
+        response => this.testExternalID = response.externalID);    
   }
 
-  updateTest(test: Test){
-    //test.id = 8; 
-    // ! doesn't work without headers
-    const headers = { 'content-type': 'application/json'}  
+  deleteTest(id: string) {
+    return this.http.delete(this.testsUrl + "users/" + this.token.externalId + "/tests/" + id, { headers: this.headers });
+  }
+
+  updateTest(test: Test) {
+    this.headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.token.accessToken };
+    test.externalID = this.testExternalID;
+    test.userExternalID = this.token.externalId;
     const body=JSON.stringify(test);
-    console.log(body); 
-    this.http.put(this.testsUrl +"/"+test.id, body,{'headers':headers})
+    console.log(body);
+    this.http.put(this.testsUrl + "users/" + this.token.externalId + "/tests/", body, { headers: this.headers })
       .subscribe(response=>
         console.log(response)); 
   }

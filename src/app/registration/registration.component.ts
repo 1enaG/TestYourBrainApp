@@ -1,3 +1,5 @@
+import { AuthService } from '../services/auth.service';
+import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'; 
 import { UsernameValidators } from './username.validators';
@@ -17,7 +19,8 @@ export class RegistrationComponent implements OnInit {
       UsernameValidators.cannotContainSpace], 
       UsernameValidators.shouldBeUnique), 
   }); 
-  constructor() { }
+  constructor(private authService :AuthService, 
+    private router: Router) { }
 
   // properties 
   get email(){
@@ -31,6 +34,14 @@ export class RegistrationComponent implements OnInit {
   }
   get username(){
     return this.regForm.get("username"); 
+  }
+
+  registration(credentials: any){
+    let isValid = this.authService.registration(credentials); //actually should do it through SUBSCRIBE!
+    if(isValid){
+      this.router.navigate(["/dashboard-component"]); //works 
+    }
+
   }
 
   ngOnInit(): void {

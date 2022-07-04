@@ -2,7 +2,7 @@
     <ng-container class="title-text">Registration</ng-container>
 </page-title>
 <div class="justify-center">
-    <form action="" [formGroup]="regForm">
+    <form action="" [formGroup]="regForm" #f="ngForm" (ngSubmit)="registration(f.value)">
 
         <label for="email">Email address</label> 
         <br>
